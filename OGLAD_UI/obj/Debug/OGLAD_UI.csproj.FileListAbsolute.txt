@@ -1,0 +1,10 @@
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.csproj.AssemblyReference.cache
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.Form1.resources
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.Properties.Resources.resources
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.csproj.GenerateResource.cache
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.csproj.CoreCompileInputs.cache
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\OGLAD_UI.exe.config
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\OGLAD_UI.exe
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\OGLAD_UI.pdb
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.exe
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.pdb

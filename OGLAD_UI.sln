@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OGLAD_UI", "OGLAD_UI\OGLAD_UI.csproj", "{3D742BAB-4EC6-4801-AF5A-A5A93ED0667C}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Analyzer_Ico", "Analyzer_Ico\Analyzer_Ico.vdproj", "{79A26901-3B3A-417D-A742-B1988F41E334}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D742BAB-4EC6-4801-AF5A-A5A93ED0667C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D742BAB-4EC6-4801-AF5A-A5A93ED0667C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D742BAB-4EC6-4801-AF5A-A5A93ED0667C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D742BAB-4EC6-4801-AF5A-A5A93ED0667C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79A26901-3B3A-417D-A742-B1988F41E334}.Debug|Any CPU.ActiveCfg = Debug
+		{79A26901-3B3A-417D-A742-B1988F41E334}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DD1F05C4-8D52-40F3-A595-8141FD6F6E8B}
+	EndGlobalSection
+EndGlobal
