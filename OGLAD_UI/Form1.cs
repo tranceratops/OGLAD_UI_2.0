@@ -55,8 +55,8 @@ namespace OGLAD_UI
                     double c1, c2;
                     for (int i = 1; i < rowcount; i++)
                     {
-                        c1 = Convert.ToDouble(dataGridView1.Rows[i].Cells[2].Value);
-                        c2 = Convert.ToDouble(dataGridView1.Rows[i].Cells[3].Value);
+                        c1 = Convert.ToDouble(dataGridView1.Rows[i].Cells[0].Value);
+                        c2 = Convert.ToDouble(dataGridView1.Rows[i].Cells[2].Value);
                         chart1.Series["Series1"].Points.AddXY(c1, c2);
                     }
                 }
@@ -67,8 +67,8 @@ namespace OGLAD_UI
                     double c1, c2;
                     for (int i = 1; i < rowcount; i++)
                     {
-                        c1 = Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value);
-                        c2 = Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value);
+                        c1 = Convert.ToDouble(dataGridView1.Rows[i].Cells[0].Value);
+                        c2 = Convert.ToDouble(dataGridView1.Rows[i].Cells[3].Value);
                         chart1.Series["Series1"].Points.AddXY(c1, c2);
                     }
                 }
@@ -85,9 +85,12 @@ namespace OGLAD_UI
             if (guiRunning)
             {
                 guiRunning = false;
-                g.Clear(Color.White);
-                g.Dispose();
+                foreach (var series in chart1.Series)
+                {
+                    series.Points.Clear();
+                }
                 txtStatus.Text = " The O-GLAD System is not running";
+
             }
             else
             {
