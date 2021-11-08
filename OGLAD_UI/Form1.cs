@@ -15,7 +15,6 @@ namespace OGLAD_UI
     {
         //Global Variables
         bool guiRunning = false;
-
         // Create graphics object
         Graphics g;
 
@@ -66,7 +65,8 @@ namespace OGLAD_UI
                 int rowcount = dataGridView1.RowCount - 1;
 
                 if (cbxParam1.Checked)
-                {   // Creating List of point to plot and scaling wave to fit window
+                {   // reading voltage data from cell 1 and 2
+                    // plotting on chart box
                     double c1, c2;
                     for (int i = 1; i < rowcount; i++)
                     {
@@ -77,6 +77,8 @@ namespace OGLAD_UI
                 }
                 if (cbxParam2.Checked)
                 {
+                    // reading voltage data from cell 3 and 4
+                    // plotting on chart box
                     double c1, c2;
                     for (int i = 1; i < rowcount; i++)
                     {
@@ -87,6 +89,8 @@ namespace OGLAD_UI
                 }
                 if (cbxParam3.Checked)
                 {
+                    // reading voltage data from cell 5 and 6
+                    // plotting on chart box
                     double c1, c2;
                     for (int i = 1; i < rowcount; i++)
                     {
