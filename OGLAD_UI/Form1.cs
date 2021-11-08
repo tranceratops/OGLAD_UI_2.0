@@ -28,33 +28,6 @@ namespace OGLAD_UI
             cbxParam3.Checked = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //upload signal data to grid
-            try
-            {
-                openFileDialog1.ShowDialog();
-                string fn = openFileDialog1.FileName;
-                string readfile = File.ReadAllText(fn);
-                string[] line = readfile.Split('\n');
-                int count = 0;
-                foreach (string str in line[0].Split(','))
-                {
-                    count++;
-                }
-                dataGridView1.ColumnCount = count;
-                foreach (string s1 in readfile.Split('\n'))
-                {
-                    if (s1 != "")
-                        dataGridView1.Rows.Add(s1.Split(','));
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error in loading file.");
-            }
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             if (!guiRunning)
@@ -119,6 +92,33 @@ namespace OGLAD_UI
             else
             {
 
+            }
+        }
+
+        private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //upload signal data to grid
+            try
+            {
+                openFileDialog1.ShowDialog();
+                string fn = openFileDialog1.FileName;
+                string readfile = File.ReadAllText(fn);
+                string[] line = readfile.Split('\n');
+                int count = 0;
+                foreach (string str in line[0].Split(','))
+                {
+                    count++;
+                }
+                dataGridView1.ColumnCount = count;
+                foreach (string s1 in readfile.Split('\n'))
+                {
+                    if (s1 != "")
+                        dataGridView1.Rows.Add(s1.Split(','));
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error in loading file.");
             }
         }
     }
