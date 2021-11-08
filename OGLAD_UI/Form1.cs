@@ -15,6 +15,7 @@ namespace OGLAD_UI
     {
         //Global Variables
         bool guiRunning = false;
+
         // Create graphics object
         Graphics g;
 
