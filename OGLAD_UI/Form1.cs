@@ -57,8 +57,9 @@ namespace OGLAD_UI
                     {
                         c1 = Convert.ToDouble(dataGridView1.Rows[i].Cells[0].Value);
                         c2 = Convert.ToDouble(dataGridView1.Rows[i].Cells[2].Value);
-                        chart1.Series["Series1"].Points.AddXY(c1, c2);
+                        chart1.Series["Series2"].Points.AddXY(c1, c2);
                     }
+                    
                 }
                 if (cbxParam3.Checked)
                 {
@@ -69,7 +70,7 @@ namespace OGLAD_UI
                     {
                         c1 = Convert.ToDouble(dataGridView1.Rows[i].Cells[0].Value);
                         c2 = Convert.ToDouble(dataGridView1.Rows[i].Cells[3].Value);
-                        chart1.Series["Series1"].Points.AddXY(c1, c2);
+                        chart1.Series["Series3"].Points.AddXY(c1, c2);
                     }
                 }
                 txtStatus.Text = "The O-GLAD System is running";
