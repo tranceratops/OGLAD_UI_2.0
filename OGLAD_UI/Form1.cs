@@ -26,8 +26,14 @@ namespace OGLAD_UI
             cbxParam1.Checked = true;
             cbxParam2.Checked = false;
             cbxParam3.Checked = false;
+            this.WindowState = FormWindowState.Maximized;
+            SetupGraphLabels();
         }
 
+        public void SetupGraphLabels()
+        {
+            plotGraph.
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             if (!guiRunning)
@@ -57,9 +63,9 @@ namespace OGLAD_UI
                     {
                         c1 = Convert.ToDouble(dataGridView1.Rows[i].Cells[0].Value);
                         c2 = Convert.ToDouble(dataGridView1.Rows[i].Cells[2].Value);
-                        chart1.Series["Series2"].Points.AddXY(c1, c2);
+                        plotGraph.Plot.AddScatter(c1,c2);
                     }
-                    
+
                 }
                 if (cbxParam3.Checked)
                 {
