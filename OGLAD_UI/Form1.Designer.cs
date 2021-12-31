@@ -29,17 +29,12 @@ namespace OGLAD_UI
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnStart = new System.Windows.Forms.Button();
             this.gbxView = new System.Windows.Forms.GroupBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.plotGraph = new ScottPlot.FormsPlot();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -91,7 +86,6 @@ namespace OGLAD_UI
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.gbxView.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -112,10 +106,10 @@ namespace OGLAD_UI
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(81, 3);
+            this.dataGridView1.Location = new System.Drawing.Point(83, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.tableLayoutPanel1.SetRowSpan(this.dataGridView1, 6);
-            this.dataGridView1.Size = new System.Drawing.Size(201, 397);
+            this.dataGridView1.Size = new System.Drawing.Size(205, 440);
             this.dataGridView1.TabIndex = 1;
             // 
             // btnStart
@@ -133,47 +127,22 @@ namespace OGLAD_UI
             this.gbxView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbxView.Controls.Add(this.chart1);
-            this.gbxView.Location = new System.Drawing.Point(364, 3);
+            this.gbxView.Controls.Add(this.plotGraph);
+            this.gbxView.Location = new System.Drawing.Point(371, 3);
             this.gbxView.Name = "gbxView";
             this.tableLayoutPanel1.SetRowSpan(this.gbxView, 4);
-            this.gbxView.Size = new System.Drawing.Size(473, 310);
+            this.gbxView.Size = new System.Drawing.Size(481, 342);
             this.gbxView.TabIndex = 5;
             this.gbxView.TabStop = false;
             this.gbxView.Text = "View";
             // 
-            // chart1
+            // plotGraph
             // 
-            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.AxisX.MajorGrid.Enabled = false;
-            chartArea1.AxisY.MajorGrid.Enabled = false;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(6, 19);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Legend = "Legend1";
-            series2.Name = "Series2";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Legend = "Legend1";
-            series3.Name = "Series3";
-            this.chart1.Series.Add(series1);
-            this.chart1.Series.Add(series2);
-            this.chart1.Series.Add(series3);
-            this.chart1.Size = new System.Drawing.Size(457, 291);
-            this.chart1.TabIndex = 4;
-            this.chart1.Text = "chart1";
+            this.plotGraph.BackColor = System.Drawing.Color.Transparent;
+            this.plotGraph.Location = new System.Drawing.Point(24, 19);
+            this.plotGraph.Name = "plotGraph";
+            this.plotGraph.Size = new System.Drawing.Size(472, 317);
+            this.plotGraph.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -183,7 +152,7 @@ namespace OGLAD_UI
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(179, 30);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(360, 72);
+            this.groupBox2.Size = new System.Drawing.Size(369, 72);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Data View";
@@ -194,7 +163,7 @@ namespace OGLAD_UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtStatus.Location = new System.Drawing.Point(49, 32);
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(296, 20);
+            this.txtStatus.Size = new System.Drawing.Size(305, 20);
             this.txtStatus.TabIndex = 1;
             // 
             // label1
@@ -235,10 +204,10 @@ namespace OGLAD_UI
             this.groupBox3.Controls.Add(this.cbxParam3);
             this.groupBox3.Controls.Add(this.cbxParam2);
             this.groupBox3.Controls.Add(this.cbxParam1);
-            this.groupBox3.Location = new System.Drawing.Point(288, 3);
+            this.groupBox3.Location = new System.Drawing.Point(294, 3);
             this.groupBox3.Name = "groupBox3";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox3, 4);
-            this.groupBox3.Size = new System.Drawing.Size(70, 310);
+            this.groupBox3.Size = new System.Drawing.Size(71, 342);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Display";
@@ -281,10 +250,10 @@ namespace OGLAD_UI
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox4, 2);
             this.groupBox4.Controls.Add(this.groupBox2);
             this.groupBox4.Controls.Add(this.groupBox1);
-            this.groupBox4.Location = new System.Drawing.Point(288, 319);
+            this.groupBox4.Location = new System.Drawing.Point(294, 351);
             this.groupBox4.Name = "groupBox4";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox4, 2);
-            this.groupBox4.Size = new System.Drawing.Size(549, 81);
+            this.groupBox4.Size = new System.Drawing.Size(558, 92);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Controls";
@@ -296,7 +265,7 @@ namespace OGLAD_UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Location = new System.Drawing.Point(3, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(72, 73);
+            this.button2.Size = new System.Drawing.Size(74, 81);
             this.button2.TabIndex = 9;
             this.button2.Text = "Raw Data";
             this.button2.UseVisualStyleBackColor = true;
@@ -312,7 +281,7 @@ namespace OGLAD_UI
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(864, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(879, 24);
             this.menuStrip1.TabIndex = 12;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -540,9 +509,9 @@ namespace OGLAD_UI
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(3, 82);
+            this.button1.Location = new System.Drawing.Point(3, 90);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(72, 73);
+            this.button1.Size = new System.Drawing.Size(74, 81);
             this.button1.TabIndex = 13;
             this.button1.Text = "Load Profile";
             this.button1.UseVisualStyleBackColor = true;
@@ -552,9 +521,9 @@ namespace OGLAD_UI
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(3, 161);
+            this.button3.Location = new System.Drawing.Point(3, 177);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(72, 73);
+            this.button3.Size = new System.Drawing.Size(74, 81);
             this.button3.TabIndex = 14;
             this.button3.Text = "Save Profile";
             this.button3.UseVisualStyleBackColor = true;
@@ -564,9 +533,9 @@ namespace OGLAD_UI
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(3, 240);
+            this.button4.Location = new System.Drawing.Point(3, 264);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(72, 73);
+            this.button4.Size = new System.Drawing.Size(74, 81);
             this.button4.TabIndex = 15;
             this.button4.Text = "Delete Profile";
             this.button4.UseVisualStyleBackColor = true;
@@ -576,10 +545,10 @@ namespace OGLAD_UI
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(3, 319);
+            this.button5.Location = new System.Drawing.Point(3, 351);
             this.button5.Name = "button5";
             this.tableLayoutPanel1.SetRowSpan(this.button5, 2);
-            this.button5.Size = new System.Drawing.Size(72, 81);
+            this.button5.Size = new System.Drawing.Size(74, 92);
             this.button5.TabIndex = 16;
             this.button5.Text = "Export Profile";
             this.button5.UseVisualStyleBackColor = true;
@@ -605,15 +574,14 @@ namespace OGLAD_UI
             this.tableLayoutPanel1.Controls.Add(this.button5, 0, 4);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 10);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(840, 425);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(855, 446);
             this.tableLayoutPanel1.TabIndex = 17;
             // 
             // groupBox5
@@ -624,7 +592,7 @@ namespace OGLAD_UI
             this.groupBox5.Controls.Add(this.tableLayoutPanel1);
             this.groupBox5.Location = new System.Drawing.Point(12, 27);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(840, 441);
+            this.groupBox5.Size = new System.Drawing.Size(855, 462);
             this.groupBox5.TabIndex = 18;
             this.groupBox5.TabStop = false;
             // 
@@ -633,7 +601,7 @@ namespace OGLAD_UI
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(864, 480);
+            this.ClientSize = new System.Drawing.Size(879, 501);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -642,7 +610,6 @@ namespace OGLAD_UI
             this.Text = "KWH Load Analyzer";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.gbxView.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -673,7 +640,6 @@ namespace OGLAD_UI
         private System.Windows.Forms.CheckBox cbxParam3;
         private System.Windows.Forms.CheckBox cbxParam2;
         private System.Windows.Forms.CheckBox cbxParam1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
@@ -713,6 +679,7 @@ namespace OGLAD_UI
         private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox5;
+        private ScottPlot.FormsPlot plotGraph;
     }
 }
 
