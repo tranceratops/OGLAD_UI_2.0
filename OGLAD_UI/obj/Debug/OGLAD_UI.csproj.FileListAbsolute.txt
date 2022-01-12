@@ -18,3 +18,9 @@ C:\Users\Cade\Source\Repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.csproj.GenerateR
 C:\Users\Cade\Source\Repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.csproj.CoreCompileInputs.cache
 C:\Users\Cade\Source\Repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.exe
 C:\Users\Cade\Source\Repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.pdb
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\ScottPlot.dll
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\ScottPlot.WinForms.dll
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\System.Drawing.Common.dll
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\System.ValueTuple.dll
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\ScottPlot.xml
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\System.ValueTuple.xml
