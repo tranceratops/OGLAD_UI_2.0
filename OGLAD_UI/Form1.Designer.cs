@@ -138,8 +138,11 @@ namespace OGLAD_UI
             // 
             // plotGraph
             // 
+            this.plotGraph.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.plotGraph.BackColor = System.Drawing.Color.Transparent;
-            this.plotGraph.Location = new System.Drawing.Point(24, 19);
+            this.plotGraph.Location = new System.Drawing.Point(6, 19);
             this.plotGraph.Name = "plotGraph";
             this.plotGraph.Size = new System.Drawing.Size(472, 317);
             this.plotGraph.TabIndex = 0;

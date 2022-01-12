@@ -32,7 +32,9 @@ namespace OGLAD_UI
 
         public void SetupGraphLabels()
         {
-            plotGraph.
+            plotGraph.Plot.XLabel("Time");
+            plotGraph.Plot.Title("Signal Graph");
+
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -47,24 +49,40 @@ namespace OGLAD_UI
                 {   // reading voltage data from cell 1 and 2
                     // plotting on chart box
                     double c1, c2;
+                    List<double> vListX = new List<double>();
+                    List<double> vListY = new List<double>();
                     for (int i = 1; i < rowcount; i++)
                     {
                         c1 = Convert.ToDouble(dataGridView1.Rows[i].Cells[0].Value);
                         c2 = Convert.ToDouble(dataGridView1.Rows[i].Cells[1].Value);
-                        chart1.Series["Series1"].Points.AddXY(c1, c2);
+                        vListX.Add(c1);
+                        vListY.Add(c2);
                     }
+                    double[] iArrX = vListX.ToArray();
+                    double[] iArrY = vListY.ToArray();
+                    plotGraph.Plot.YLabel("Voltage");
+                    plotGraph.Plot.AddScatter(iArrX, iArrY);
+                    plotGraph.Refresh();
                 }
                 if (cbxParam2.Checked)
                 {
                     // reading voltage data from cell 3 and 4
                     // plotting on chart box
                     double c1, c2;
+                    List<double> iListX = new List<double>();
+                    List<double> iListY = new List<double>();
                     for (int i = 1; i < rowcount; i++)
                     {
                         c1 = Convert.ToDouble(dataGridView1.Rows[i].Cells[0].Value);
                         c2 = Convert.ToDouble(dataGridView1.Rows[i].Cells[2].Value);
-                        plotGraph.Plot.AddScatter(c1,c2);
+                        iListX.Add(c1);
+                        iListY.Add(c2);
                     }
+                    double[] iArrX = iListX.ToArray();
+                    double[] iArrY = iListY.ToArray();
+                    plotGraph.Plot.YLabel("Current");
+                    plotGraph.Plot.AddScatter(iArrX, iArrY);
+                    plotGraph.Refresh();
 
                 }
                 if (cbxParam3.Checked)
@@ -72,12 +90,20 @@ namespace OGLAD_UI
                     // reading voltage data from cell 5 and 6
                     // plotting on chart box
                     double c1, c2;
+                    List<double> pListX = new List<double>();
+                    List<double> pListY = new List<double>();
                     for (int i = 1; i < rowcount; i++)
                     {
                         c1 = Convert.ToDouble(dataGridView1.Rows[i].Cells[0].Value);
                         c2 = Convert.ToDouble(dataGridView1.Rows[i].Cells[3].Value);
-                        chart1.Series["Series3"].Points.AddXY(c1, c2);
+                        pListX.Add(c1);
+                        pListY.Add(c2);
                     }
+                    double[] pArrX = pListX.ToArray();
+                    double[] pArrY = pListY.ToArray();
+                    plotGraph.Plot.YLabel("Power");
+                    plotGraph.Plot.AddScatter(pArrX, pArrY);
+                    plotGraph.Refresh();
                 }
                 txtStatus.Text = "The O-GLAD System is running";
 
@@ -92,10 +118,8 @@ namespace OGLAD_UI
             if (guiRunning)
             {
                 guiRunning = false;
-                foreach (var series in chart1.Series)
-                {
-                    series.Points.Clear();
-                }
+                plotGraph.Plot.Clear();
+                plotGraph.Refresh();
                 txtStatus.Text = " The O-GLAD System is not running";
 
             }
