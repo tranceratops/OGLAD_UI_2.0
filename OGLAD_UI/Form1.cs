@@ -66,7 +66,7 @@ namespace OGLAD_UI
                 }
                 if (cbxParam2.Checked)
                 {
-                    // reading voltage data from cell 3 and 4
+                    // reading current data from cell 3 and 4
                     // plotting on chart box
                     double c1, c2;
                     List<double> iListX = new List<double>();
@@ -74,6 +74,10 @@ namespace OGLAD_UI
                     for (int i = 1; i < rowcount; i++)
                     {
                         c1 = Convert.ToDouble(dataGridView1.Rows[i].Cells[0].Value);
+                        if (dataGridView1.Rows[i].Cells[2].Value == null)
+                        {
+                            continue;
+                        }
                         c2 = Convert.ToDouble(dataGridView1.Rows[i].Cells[2].Value);
                         iListX.Add(c1);
                         iListY.Add(c2);
@@ -87,7 +91,7 @@ namespace OGLAD_UI
                 }
                 if (cbxParam3.Checked)
                 {
-                    // reading voltage data from cell 5 and 6
+                    // reading power data from cell 5 and 6
                     // plotting on chart box
                     double c1, c2;
                     List<double> pListX = new List<double>();
@@ -131,6 +135,7 @@ namespace OGLAD_UI
 
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             //upload signal data to grid
             try
             {
@@ -139,6 +144,7 @@ namespace OGLAD_UI
                 string readfile = File.ReadAllText(fn);
                 string[] line = readfile.Split('\n');
                 int count = 0;
+            
                 foreach (string str in line[0].Split(','))
                 {
                     count++;
@@ -146,9 +152,20 @@ namespace OGLAD_UI
                 dataGridView1.ColumnCount = count;
                 foreach (string s1 in readfile.Split('\n'))
                 {
-                    if (s1 != "")
-                        dataGridView1.Rows.Add(s1.Split(','));
+                if (s1 != "")
+                    dataGridView1.Rows.Add(s1.Split(','));
+                    
                 }
+                //after figuring out how to read in the data
+                double[] timeArr = new double[9999];
+                double[] ACEnergyArr = new double[9999];
+                for(int i = 0; i < 100000; i++)
+                {
+                    timeArr[i] = Convert.ToDouble(//read in time data value);
+                    ACEnergyArr[i] = Convert.ToDouble(//read in energy data value);
+                }
+                plotGraph.Plot.AddScatter(timeArr, ACEnergyArr);
+                plotGraph.Refresh();
             }
             catch (Exception)
             {
