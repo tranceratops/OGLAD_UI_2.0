@@ -127,6 +127,8 @@ namespace OGLAD_UI
                 foreach (string s1 in readfile.Split('\n'))
                 {
                     tmp = s1.Split(',');
+                    if (tmp[0] == "")
+                        break;
                     timeArr.Add(Convert.ToDouble(tmp[0]));
                     voltageArr.Add(Convert.ToDouble(tmp[1]));
                     currentArr.Add(Convert.ToDouble(tmp[2]));
@@ -134,8 +136,6 @@ namespace OGLAD_UI
                     freqArr.Add(Convert.ToDouble(tmp[4]));
                     //ce1Arr.Add(Convert.ToDouble(tmp[5]));
                     //ce24Arr.Add(Convert.ToDouble(tmp[6]));
-                    if (tmp[0] == "")
-                        break;
                 }
             }
             catch (Exception)
