@@ -84,6 +84,7 @@ namespace OGLAD_UI
             this.button5 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.cbxParam4 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.gbxView.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -204,6 +205,7 @@ namespace OGLAD_UI
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.cbxParam4);
             this.groupBox3.Controls.Add(this.cbxParam3);
             this.groupBox3.Controls.Add(this.cbxParam2);
             this.groupBox3.Controls.Add(this.cbxParam1);
@@ -220,9 +222,9 @@ namespace OGLAD_UI
             this.cbxParam3.AutoSize = true;
             this.cbxParam3.Location = new System.Drawing.Point(6, 76);
             this.cbxParam3.Name = "cbxParam3";
-            this.cbxParam3.Size = new System.Drawing.Size(56, 17);
+            this.cbxParam3.Size = new System.Drawing.Size(89, 17);
             this.cbxParam3.TabIndex = 2;
-            this.cbxParam3.Text = "Power";
+            this.cbxParam3.Text = "Power Factor";
             this.cbxParam3.UseVisualStyleBackColor = true;
             // 
             // cbxParam2
@@ -599,6 +601,16 @@ namespace OGLAD_UI
             this.groupBox5.TabIndex = 18;
             this.groupBox5.TabStop = false;
             // 
+            // cbxParam4
+            // 
+            this.cbxParam4.AutoSize = true;
+            this.cbxParam4.Location = new System.Drawing.Point(6, 100);
+            this.cbxParam4.Name = "checkBox1";
+            this.cbxParam4.Size = new System.Drawing.Size(76, 17);
+            this.cbxParam4.TabIndex = 3;
+            this.cbxParam4.Text = "Frequency";
+            this.cbxParam4.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -683,6 +695,7 @@ namespace OGLAD_UI
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox5;
         private ScottPlot.FormsPlot plotGraph;
+        private System.Windows.Forms.CheckBox cbxParam4;
     }
 }
 
