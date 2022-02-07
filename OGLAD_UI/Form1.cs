@@ -17,6 +17,13 @@ namespace OGLAD_UI
         bool guiRunning = false;
         // Create graphics object
         Graphics g;
+        List<double> voltageArr = new List<double>();
+        List<double> currentArr = new List<double>();
+        List<double> timeArr = new List<double>();
+        List<double> pfArr = new List<double>();
+        List<double> freqArr = new List<double>();
+        List<double> ce1Arr = new List<double>();
+        List<double> ce24Arr = new List<double>();
 
         public Form1()
         {
@@ -43,70 +50,42 @@ namespace OGLAD_UI
                 // Turn on GUI running flag
                 guiRunning = true;
                 //plot signal data
-                int rowcount = dataGridView1.RowCount - 1;
+                double[] timeArrX = timeArr.ToArray();
 
                 if (cbxParam1.Checked)
-                {   // reading voltage data from cell 1 and 2
+                {   // converting voltage data array
                     // plotting on chart box
-                    double c1, c2;
-                    List<double> vListX = new List<double>();
-                    List<double> vListY = new List<double>();
-                    for (int i = 1; i < rowcount; i++)
-                    {
-                        c1 = Convert.ToDouble(dataGridView1.Rows[i].Cells[0].Value);
-                        c2 = Convert.ToDouble(dataGridView1.Rows[i].Cells[1].Value);
-                        vListX.Add(c1);
-                        vListY.Add(c2);
-                    }
-                    double[] iArrX = vListX.ToArray();
-                    double[] iArrY = vListY.ToArray();
+                    double[] voltageArrY = voltageArr.ToArray();
                     plotGraph.Plot.YLabel("Voltage");
-                    plotGraph.Plot.AddScatter(iArrX, iArrY);
+                    plotGraph.Plot.AddScatter(timeArrX, voltageArrY);
                     plotGraph.Refresh();
                 }
                 if (cbxParam2.Checked)
                 {
-                    // reading current data from cell 3 and 4
+                    // converting current data array
                     // plotting on chart box
-                    double c1, c2;
-                    List<double> iListX = new List<double>();
-                    List<double> iListY = new List<double>();
-                    for (int i = 1; i < rowcount; i++)
-                    {
-                        c1 = Convert.ToDouble(dataGridView1.Rows[i].Cells[0].Value);
-                        if (dataGridView1.Rows[i].Cells[2].Value == null)
-                        {
-                            continue;
-                        }
-                        c2 = Convert.ToDouble(dataGridView1.Rows[i].Cells[2].Value);
-                        iListX.Add(c1);
-                        iListY.Add(c2);
-                    }
-                    double[] iArrX = iListX.ToArray();
-                    double[] iArrY = iListY.ToArray();
+                    double[] currentArrY = currentArr.ToArray();
                     plotGraph.Plot.YLabel("Current");
-                    plotGraph.Plot.AddScatter(iArrX, iArrY);
+                    plotGraph.Plot.AddScatter(timeArrX, currentArrY);
                     plotGraph.Refresh();
 
                 }
                 if (cbxParam3.Checked)
                 {
-                    // reading power data from cell 5 and 6
+                    // converting power factor data array
                     // plotting on chart box
-                    double c1, c2;
-                    List<double> pListX = new List<double>();
-                    List<double> pListY = new List<double>();
-                    for (int i = 1; i < rowcount; i++)
-                    {
-                        c1 = Convert.ToDouble(dataGridView1.Rows[i].Cells[0].Value);
-                        c2 = Convert.ToDouble(dataGridView1.Rows[i].Cells[3].Value);
-                        pListX.Add(c1);
-                        pListY.Add(c2);
-                    }
-                    double[] pArrX = pListX.ToArray();
-                    double[] pArrY = pListY.ToArray();
-                    plotGraph.Plot.YLabel("Power");
-                    plotGraph.Plot.AddScatter(pArrX, pArrY);
+                    double[] pfArrY = pfArr.ToArray();
+                    plotGraph.Plot.YLabel("Power Factor");
+                    plotGraph.Plot.AddScatter(timeArrX, pfArrY);
+                    plotGraph.Refresh();
+                }
+                if (cbxParam4.Checked)
+                {
+                    // converting frequency data array
+                    // plotting on chart box
+                    double[] freqArrY = freqArr.ToArray();
+                    plotGraph.Plot.YLabel("Frequency");
+                    plotGraph.Plot.AddScatter(timeArrX, freqArrY);
                     plotGraph.Refresh();
                 }
                 txtStatus.Text = "The O-GLAD System is running";
@@ -143,29 +122,23 @@ namespace OGLAD_UI
                 string fn = openFileDialog1.FileName;
                 string readfile = File.ReadAllText(fn);
                 string[] line = readfile.Split('\n');
-                int count = 0;
-            
-                foreach (string str in line[0].Split(','))
-                {
-                    count++;
-                }
-                dataGridView1.ColumnCount = count;
+                int linenum = 0;
+
+                string [] tmp;
                 foreach (string s1 in readfile.Split('\n'))
                 {
-                if (s1 != "")
-                    dataGridView1.Rows.Add(s1.Split(','));
+                    tmp = s1.Split(',');
+
+                    voltageArr[linenum] = Convert.ToDouble(tmp[0]);
+                    currentArr[linenum] = Convert.ToDouble(tmp[1]);
+                    timeArr[linenum] = Convert.ToDouble(tmp[2]);
+                    pfArr[linenum] = Convert.ToDouble(tmp[3]);
+                    freqArr[linenum] = Convert.ToDouble(tmp[4]);
+                    ce1Arr[linenum] = Convert.ToDouble(tmp[5]);
+                    ce24Arr[linenum] = Convert.ToDouble(tmp[6]);
                     
+                    linenum += 1;
                 }
-                //after figuring out how to read in the data
-                double[] timeArr = new double[9999];
-                double[] ACEnergyArr = new double[9999];
-                for(int i = 0; i < 100000; i++)
-                {
-                    timeArr[i] = Convert.ToDouble(//read in time data value);
-                    ACEnergyArr[i] = Convert.ToDouble(//read in energy data value);
-                }
-                plotGraph.Plot.AddScatter(timeArr, ACEnergyArr);
-                plotGraph.Refresh();
             }
             catch (Exception)
             {
