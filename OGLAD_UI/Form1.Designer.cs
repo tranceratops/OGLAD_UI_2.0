@@ -31,7 +31,6 @@ namespace OGLAD_UI
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnStart = new System.Windows.Forms.Button();
             this.gbxView = new System.Windows.Forms.GroupBox();
             this.plotGraph = new ScottPlot.FormsPlot();
@@ -41,6 +40,7 @@ namespace OGLAD_UI
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnStop = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cbxParam4 = new System.Windows.Forms.CheckBox();
             this.cbxParam3 = new System.Windows.Forms.CheckBox();
             this.cbxParam2 = new System.Windows.Forms.CheckBox();
             this.cbxParam1 = new System.Windows.Forms.CheckBox();
@@ -84,8 +84,6 @@ namespace OGLAD_UI
             this.button5 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.cbxParam4 = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.gbxView.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -99,19 +97,6 @@ namespace OGLAD_UI
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(83, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.tableLayoutPanel1.SetRowSpan(this.dataGridView1, 6);
-            this.dataGridView1.Size = new System.Drawing.Size(205, 440);
-            this.dataGridView1.TabIndex = 1;
             // 
             // btnStart
             // 
@@ -129,10 +114,10 @@ namespace OGLAD_UI
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbxView.Controls.Add(this.plotGraph);
-            this.gbxView.Location = new System.Drawing.Point(371, 3);
+            this.gbxView.Location = new System.Drawing.Point(177, 3);
             this.gbxView.Name = "gbxView";
             this.tableLayoutPanel1.SetRowSpan(this.gbxView, 4);
-            this.gbxView.Size = new System.Drawing.Size(481, 342);
+            this.gbxView.Size = new System.Drawing.Size(675, 342);
             this.gbxView.TabIndex = 5;
             this.gbxView.TabStop = false;
             this.gbxView.Text = "View";
@@ -145,7 +130,7 @@ namespace OGLAD_UI
             this.plotGraph.BackColor = System.Drawing.Color.Transparent;
             this.plotGraph.Location = new System.Drawing.Point(6, 19);
             this.plotGraph.Name = "plotGraph";
-            this.plotGraph.Size = new System.Drawing.Size(472, 317);
+            this.plotGraph.Size = new System.Drawing.Size(666, 317);
             this.plotGraph.TabIndex = 0;
             // 
             // groupBox2
@@ -156,7 +141,7 @@ namespace OGLAD_UI
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(179, 30);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(369, 72);
+            this.groupBox2.Size = new System.Drawing.Size(580, 72);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Data View";
@@ -167,7 +152,7 @@ namespace OGLAD_UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtStatus.Location = new System.Drawing.Point(49, 32);
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(305, 20);
+            this.txtStatus.Size = new System.Drawing.Size(516, 20);
             this.txtStatus.TabIndex = 1;
             // 
             // label1
@@ -209,13 +194,23 @@ namespace OGLAD_UI
             this.groupBox3.Controls.Add(this.cbxParam3);
             this.groupBox3.Controls.Add(this.cbxParam2);
             this.groupBox3.Controls.Add(this.cbxParam1);
-            this.groupBox3.Location = new System.Drawing.Point(294, 3);
+            this.groupBox3.Location = new System.Drawing.Point(83, 3);
             this.groupBox3.Name = "groupBox3";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox3, 4);
-            this.groupBox3.Size = new System.Drawing.Size(71, 342);
+            this.groupBox3.Size = new System.Drawing.Size(88, 342);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Display";
+            // 
+            // cbxParam4
+            // 
+            this.cbxParam4.AutoSize = true;
+            this.cbxParam4.Location = new System.Drawing.Point(6, 100);
+            this.cbxParam4.Name = "cbxParam4";
+            this.cbxParam4.Size = new System.Drawing.Size(76, 17);
+            this.cbxParam4.TabIndex = 3;
+            this.cbxParam4.Text = "Frequency";
+            this.cbxParam4.UseVisualStyleBackColor = true;
             // 
             // cbxParam3
             // 
@@ -255,10 +250,10 @@ namespace OGLAD_UI
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox4, 2);
             this.groupBox4.Controls.Add(this.groupBox2);
             this.groupBox4.Controls.Add(this.groupBox1);
-            this.groupBox4.Location = new System.Drawing.Point(294, 351);
+            this.groupBox4.Location = new System.Drawing.Point(83, 351);
             this.groupBox4.Name = "groupBox4";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox4, 2);
-            this.groupBox4.Size = new System.Drawing.Size(558, 92);
+            this.groupBox4.Size = new System.Drawing.Size(769, 92);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Controls";
@@ -563,19 +558,17 @@ namespace OGLAD_UI
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.386655F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.7117F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.095213F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.80644F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.53217F));
             this.tableLayoutPanel1.Controls.Add(this.button1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.gbxView, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox3, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.gbxView, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox3, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.button4, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.button3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.button2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox4, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox4, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.button5, 0, 4);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 10);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -601,16 +594,6 @@ namespace OGLAD_UI
             this.groupBox5.TabIndex = 18;
             this.groupBox5.TabStop = false;
             // 
-            // cbxParam4
-            // 
-            this.cbxParam4.AutoSize = true;
-            this.cbxParam4.Location = new System.Drawing.Point(6, 100);
-            this.cbxParam4.Name = "checkBox1";
-            this.cbxParam4.Size = new System.Drawing.Size(76, 17);
-            this.cbxParam4.TabIndex = 3;
-            this.cbxParam4.Text = "Frequency";
-            this.cbxParam4.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -623,7 +606,6 @@ namespace OGLAD_UI
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "KWH Load Analyzer";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.gbxView.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -642,7 +624,6 @@ namespace OGLAD_UI
 
         #endregion
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.GroupBox gbxView;
         private System.Windows.Forms.GroupBox groupBox2;
