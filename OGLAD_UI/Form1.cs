@@ -122,22 +122,19 @@ namespace OGLAD_UI
                 string fn = openFileDialog1.FileName;
                 string readfile = File.ReadAllText(fn);
                 string[] line = readfile.Split('\n');
-                int linenum = 0;
 
                 string [] tmp;
                 foreach (string s1 in readfile.Split('\n'))
                 {
                     tmp = s1.Split(',');
+                    timeArr.Add(Convert.ToDouble(tmp[0]));
+                    voltageArr.Add(Convert.ToDouble(tmp[1]));
+                    currentArr.Add(Convert.ToDouble(tmp[2]));
+                    pfArr.Add(Convert.ToDouble(tmp[3]));
+                    freqArr.Add(Convert.ToDouble(tmp[4]));
+                    ce1Arr.Add(Convert.ToDouble(tmp[5]));
+                    ce24Arr.Add(Convert.ToDouble(tmp[6]));
 
-                    voltageArr[linenum] = Convert.ToDouble(tmp[0]);
-                    currentArr[linenum] = Convert.ToDouble(tmp[1]);
-                    timeArr[linenum] = Convert.ToDouble(tmp[2]);
-                    pfArr[linenum] = Convert.ToDouble(tmp[3]);
-                    freqArr[linenum] = Convert.ToDouble(tmp[4]);
-                    ce1Arr[linenum] = Convert.ToDouble(tmp[5]);
-                    ce24Arr[linenum] = Convert.ToDouble(tmp[6]);
-                    
-                    linenum += 1;
                 }
             }
             catch (Exception)
