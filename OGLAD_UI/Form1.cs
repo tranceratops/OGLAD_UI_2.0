@@ -132,9 +132,10 @@ namespace OGLAD_UI
                     currentArr.Add(Convert.ToDouble(tmp[2]));
                     pfArr.Add(Convert.ToDouble(tmp[3]));
                     freqArr.Add(Convert.ToDouble(tmp[4]));
-                    ce1Arr.Add(Convert.ToDouble(tmp[5]));
-                    ce24Arr.Add(Convert.ToDouble(tmp[6]));
-
+                    //ce1Arr.Add(Convert.ToDouble(tmp[5]));
+                    //ce24Arr.Add(Convert.ToDouble(tmp[6]));
+                    if (tmp[0] == "")
+                        break;
                 }
             }
             catch (Exception)
