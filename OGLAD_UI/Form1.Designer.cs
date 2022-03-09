@@ -100,12 +100,14 @@ namespace OGLAD_UI
             // 
             // btnStart
             // 
+            this.btnStart.BackColor = System.Drawing.Color.LawnGreen;
+            this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.Location = new System.Drawing.Point(43, 27);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 3;
             this.btnStart.Text = "Start";
-            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.UseVisualStyleBackColor = false;
             this.btnStart.Click += new System.EventHandler(this.button2_Click);
             // 
             // gbxView
@@ -114,6 +116,7 @@ namespace OGLAD_UI
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbxView.Controls.Add(this.plotGraph);
+            this.gbxView.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbxView.Location = new System.Drawing.Point(177, 3);
             this.gbxView.Name = "gbxView";
             this.tableLayoutPanel1.SetRowSpan(this.gbxView, 4);
@@ -127,7 +130,8 @@ namespace OGLAD_UI
             this.plotGraph.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.plotGraph.BackColor = System.Drawing.Color.Transparent;
+            this.plotGraph.BackColor = System.Drawing.Color.PaleGreen;
+            this.plotGraph.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.plotGraph.Location = new System.Drawing.Point(6, 19);
             this.plotGraph.Name = "plotGraph";
             this.plotGraph.Size = new System.Drawing.Size(666, 317);
@@ -150,9 +154,10 @@ namespace OGLAD_UI
             // 
             this.txtStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtStatus.Location = new System.Drawing.Point(49, 32);
+            this.txtStatus.BackColor = System.Drawing.Color.PaleGreen;
+            this.txtStatus.Location = new System.Drawing.Point(54, 32);
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(516, 20);
+            this.txtStatus.Size = new System.Drawing.Size(511, 24);
             this.txtStatus.TabIndex = 1;
             // 
             // label1
@@ -160,7 +165,7 @@ namespace OGLAD_UI
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 13);
+            this.label1.Size = new System.Drawing.Size(50, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "Status";
             // 
@@ -168,6 +173,7 @@ namespace OGLAD_UI
             // 
             this.groupBox1.Controls.Add(this.btnStop);
             this.groupBox1.Controls.Add(this.btnStart);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(6, 21);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(161, 86);
@@ -177,12 +183,14 @@ namespace OGLAD_UI
             // 
             // btnStop
             // 
+            this.btnStop.BackColor = System.Drawing.Color.LawnGreen;
+            this.btnStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStop.Location = new System.Drawing.Point(43, 56);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 1;
             this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.UseVisualStyleBackColor = false;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // groupBox3
@@ -194,6 +202,7 @@ namespace OGLAD_UI
             this.groupBox3.Controls.Add(this.cbxParam3);
             this.groupBox3.Controls.Add(this.cbxParam2);
             this.groupBox3.Controls.Add(this.cbxParam1);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(83, 3);
             this.groupBox3.Name = "groupBox3";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox3, 4);
@@ -207,7 +216,7 @@ namespace OGLAD_UI
             this.cbxParam4.AutoSize = true;
             this.cbxParam4.Location = new System.Drawing.Point(6, 100);
             this.cbxParam4.Name = "cbxParam4";
-            this.cbxParam4.Size = new System.Drawing.Size(76, 17);
+            this.cbxParam4.Size = new System.Drawing.Size(96, 22);
             this.cbxParam4.TabIndex = 3;
             this.cbxParam4.Text = "Frequency";
             this.cbxParam4.UseVisualStyleBackColor = true;
@@ -217,7 +226,7 @@ namespace OGLAD_UI
             this.cbxParam3.AutoSize = true;
             this.cbxParam3.Location = new System.Drawing.Point(6, 76);
             this.cbxParam3.Name = "cbxParam3";
-            this.cbxParam3.Size = new System.Drawing.Size(89, 17);
+            this.cbxParam3.Size = new System.Drawing.Size(117, 22);
             this.cbxParam3.TabIndex = 2;
             this.cbxParam3.Text = "Power Factor";
             this.cbxParam3.UseVisualStyleBackColor = true;
@@ -227,7 +236,7 @@ namespace OGLAD_UI
             this.cbxParam2.AutoSize = true;
             this.cbxParam2.Location = new System.Drawing.Point(6, 53);
             this.cbxParam2.Name = "cbxParam2";
-            this.cbxParam2.Size = new System.Drawing.Size(60, 17);
+            this.cbxParam2.Size = new System.Drawing.Size(76, 22);
             this.cbxParam2.TabIndex = 1;
             this.cbxParam2.Text = "Current";
             this.cbxParam2.UseVisualStyleBackColor = true;
@@ -237,7 +246,7 @@ namespace OGLAD_UI
             this.cbxParam1.AutoSize = true;
             this.cbxParam1.Location = new System.Drawing.Point(6, 30);
             this.cbxParam1.Name = "cbxParam1";
-            this.cbxParam1.Size = new System.Drawing.Size(62, 17);
+            this.cbxParam1.Size = new System.Drawing.Size(76, 22);
             this.cbxParam1.TabIndex = 0;
             this.cbxParam1.Text = "Voltage";
             this.cbxParam1.UseVisualStyleBackColor = true;
@@ -250,6 +259,7 @@ namespace OGLAD_UI
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox4, 2);
             this.groupBox4.Controls.Add(this.groupBox2);
             this.groupBox4.Controls.Add(this.groupBox1);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(83, 351);
             this.groupBox4.Name = "groupBox4";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox4, 2);
@@ -263,12 +273,14 @@ namespace OGLAD_UI
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.BackColor = System.Drawing.Color.LawnGreen;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(3, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(74, 81);
             this.button2.TabIndex = 9;
             this.button2.Text = "Raw Data";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // menuStrip1
             // 
@@ -509,49 +521,57 @@ namespace OGLAD_UI
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.LawnGreen;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(3, 90);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(74, 81);
             this.button1.TabIndex = 13;
             this.button1.Text = "Load Profile";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.BackColor = System.Drawing.Color.LawnGreen;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(3, 177);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(74, 81);
             this.button3.TabIndex = 14;
             this.button3.Text = "Save Profile";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             // 
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.BackColor = System.Drawing.Color.LawnGreen;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Location = new System.Drawing.Point(3, 264);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(74, 81);
             this.button4.TabIndex = 15;
             this.button4.Text = "Delete Profile";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             // 
             // button5
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.BackColor = System.Drawing.Color.LawnGreen;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Location = new System.Drawing.Point(3, 351);
             this.button5.Name = "button5";
             this.tableLayoutPanel1.SetRowSpan(this.button5, 2);
             this.button5.Size = new System.Drawing.Size(74, 92);
             this.button5.TabIndex = 16;
             this.button5.Text = "Export Profile";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel1
             // 
@@ -598,7 +618,7 @@ namespace OGLAD_UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.Color.Green;
             this.ClientSize = new System.Drawing.Size(879, 501);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.menuStrip1);
