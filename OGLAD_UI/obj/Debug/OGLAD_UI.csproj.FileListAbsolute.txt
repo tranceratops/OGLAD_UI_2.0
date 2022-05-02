@@ -25,3 +25,7 @@ C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\System.ValueTuple.dll
 C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\ScottPlot.xml
 C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\System.ValueTuple.xml
 C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.csproj.CopyComplete
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\MetroFramework.Design.dll
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\MetroFramework.dll
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.GettingStarted.resources
