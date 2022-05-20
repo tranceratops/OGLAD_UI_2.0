@@ -42,6 +42,10 @@ namespace OGLAD_UI
         int countbotCE1 = 0;
         int countbotCE24 = 0;
 
+        int pf0count = 0;
+        int pf1count = 0;
+        string leadlag;
+
         int[] CE1IndexArr;
         int[] CE24IndexArr;
 
@@ -194,6 +198,40 @@ namespace OGLAD_UI
             plotGraph.Refresh();
         }
 
+        public void CE1Calculation(double[] valueArr)
+        {
+
+        }
+
+        public void CE24Calculation(double[] valueArr)
+        {
+
+        }
+        public void leadLagComp(double[] valueArr)
+        {
+            foreach (double pfnum in valueArr)
+            {
+                if (pfnum == 0)
+                {
+                    pf0count++;
+                }
+                else if (pfnum == 1)
+                {
+                    pf1count++;
+                }
+            }
+            if (pf0count > pf1count)
+            {
+                leadlag = "Leading";
+            }
+            else
+            {
+                leadlag = "Lagging";
+            }
+            statLeadLagVal.Text = leadlag;
+            statLeadLagVal.Location = new System.Drawing.Point(102, 338);
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
             if (!guiRunning)
@@ -215,13 +253,6 @@ namespace OGLAD_UI
                     plotGraph.Plot.YLabel("Current");
                     signalGraphing(timeArrX, currentArrY);
                 }
-                if (signalGraphPF.Checked && !histPlotTool.Checked)
-                {
-                    // converting power factor data array
-                    // plotting on chart box
-                    plotGraph.Plot.YLabel("Power Factor");
-                    signalGraphing(timeArrX, pfArrY);
-                }
                 if (signalGraphFreq.Checked && !histPlotTool.Checked)
                 {
                     // converting frequency data array
@@ -236,120 +267,113 @@ namespace OGLAD_UI
                     plotGraph.Plot.YLabel("Power");
                     signalGraphing(timeArrX, powerArrY);
                 }
-                if (histPlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPF.Checked &&!signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (histPlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
                 {
                     // creating histogram for voltage
                     // plotting on chart box
                     histogramGraph(voltageArrY);
                 }
-                if (meanPlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPF.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (meanPlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
                 {
                     meanLine(voltageArrY);
                 }
-                if (SD1PlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPF.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (SD1PlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
                 {
                     standDev1(voltageArrY);
                     
                 }
-                if (SD2PlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPF.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (SD2PlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
                 {
                     standDev2(voltageArrY);
                 }
-                if (minMaxPlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPF.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (minMaxPlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
                 {
                     minMaxLine(voltageArrY);
                 }
-                if (histPlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphPF.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (leadLagPlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                {
+                    leadLagComp(pfArrY);
+                }
+                if (histPlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
                 {
                     // creating histogram for current
                     // plotting on chart box
                     histogramGraph(currentArrY);
                 }
-                if (meanPlotTool.Checked && signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphPF.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (meanPlotTool.Checked && signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
                 {
                     meanLine(currentArrY);
                 }
-                if (SD1PlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphPF.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (SD1PlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
                 {
                     standDev1(currentArrY);
 
                 }
-                if (SD2PlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphPF.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (SD2PlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
                 {
                     standDev2(currentArrY);
                 }
-                if (minMaxPlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphPF.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (minMaxPlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
                 {
                     minMaxLine(currentArrY);
                 }
-                if (histPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphPF.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (leadLagPlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
                 {
-                    // creating histogram for power factor
-                    // plotting on chart box
-                    histogramGraph(pfArrY);
+                    leadLagComp(pfArrY);
                 }
-                if (meanPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphPF.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
-                {
-                    meanLine(pfArrY);
-                }
-                if (SD1PlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphPF.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
-                {
-                    standDev1(pfArrY);
-
-                }
-                if (SD2PlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphPF.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
-                {
-                    standDev2(pfArrY);
-                }
-                if (minMaxPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphPF.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
-                {
-                    minMaxLine(pfArrY);
-                }
-                if (histPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPF.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (histPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
                 {
                     // creating histogram for frequency
                     // plotting on chart box
                     histogramGraph(freqArrY);
                 }
-                if (meanPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPF.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (meanPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
                 {
                     meanLine(freqArrY);
                 }
-                if (SD1PlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPF.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (SD1PlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
                 {
                     standDev1(freqArrY);
 
                 }
-                if (SD2PlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPF.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (SD2PlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
                 {
                     standDev2(freqArrY);
                 }
-                if (minMaxPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPF.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (minMaxPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
                 {
                     minMaxLine(freqArrY);
                 }
-                if (histPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPF.Checked && !signalGraphFreq.Checked && signalGraphPow.Checked)
+                if (leadLagPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
+                {
+                    leadLagComp(pfArrY);
+                }
+                if (histPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && signalGraphPow.Checked)
                 {
                     // creating histogram for power
                     // plotting on chart box
                     histogramGraph(powerArrY);
                 }
-                if (meanPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPF.Checked && !signalGraphFreq.Checked && signalGraphPow.Checked)
+                if (meanPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && signalGraphPow.Checked)
                 {
                     meanLine(powerArrY);
                 }
-                if (SD1PlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPF.Checked && !signalGraphFreq.Checked && signalGraphPow.Checked)
+                if (SD1PlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && signalGraphPow.Checked)
                 {
                     standDev1(powerArrY);
 
                 }
-                if (SD2PlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPF.Checked && !signalGraphFreq.Checked && signalGraphPow.Checked)
+                if (SD2PlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && signalGraphPow.Checked)
                 {
                     standDev2(powerArrY);
                 }
-                if (minMaxPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPF.Checked && !signalGraphFreq.Checked && signalGraphPow.Checked)
+                if (minMaxPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && signalGraphPow.Checked)
                 {
                     minMaxLine(powerArrY);
+                }
+                if (leadLagPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                {
+                    leadLagComp(pfArrY);
                 }
                 txtStatus.Text = "Plotting the " + graphType + " representation.";
                 
@@ -366,6 +390,9 @@ namespace OGLAD_UI
                 guiRunning = false;
                 plotGraph.Plot.Clear();
                 voltageArr.Clear();
+                currentArr.Clear();
+                pfArr.Clear();
+                freqArr.Clear();
                 timeArr.Clear();
                 plotGraph.Refresh();
                 statMeanVal.Text = "N/A";
@@ -373,6 +400,8 @@ namespace OGLAD_UI
                 statSD2LowerVal.Text = "N/A";
                 statMinVal.Text = "N/A";
                 statMaxVal.Text = "N/A";
+                statLeadLagVal.Text = "N/A";
+                statLeadLagVal.Location = new System.Drawing.Point(111, 338);
                 statSD1LowerVal.Location = new System.Drawing.Point(111, 104);
                 statSD2LowerVal.Location = new System.Drawing.Point(111, 169);
                 statSD1UpperVal.Visible = false;
