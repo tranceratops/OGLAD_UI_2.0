@@ -73,7 +73,6 @@ namespace OGLAD_UI
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.signalGraphPow = new System.Windows.Forms.CheckBox();
             this.signalGraphFreq = new System.Windows.Forms.CheckBox();
-            this.signalGraphPF = new System.Windows.Forms.CheckBox();
             this.signalGraphCurr = new System.Windows.Forms.CheckBox();
             this.signalGraphVolt = new System.Windows.Forms.CheckBox();
             this.gbxView = new System.Windows.Forms.GroupBox();
@@ -93,13 +92,17 @@ namespace OGLAD_UI
             this.statSD2LowerVal = new System.Windows.Forms.Label();
             this.statSD1LowerVal = new System.Windows.Forms.Label();
             this.statMeanVal = new System.Windows.Forms.Label();
-            this.statMax = new System.Windows.Forms.Label();
             this.statMin = new System.Windows.Forms.Label();
             this.statSD2 = new System.Windows.Forms.Label();
             this.statSD1 = new System.Windows.Forms.Label();
             this.statMean = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.statLeadLagVal = new System.Windows.Forms.Label();
+            this.statLeadLag = new System.Windows.Forms.Label();
+            this.statMax = new System.Windows.Forms.Label();
+            this.leadLagPlotTool = new System.Windows.Forms.CheckBox();
+            this.signalGraphCE1 = new System.Windows.Forms.CheckBox();
+            this.signalGraphCE24 = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -110,6 +113,7 @@ namespace OGLAD_UI
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -349,6 +353,7 @@ namespace OGLAD_UI
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox6.Controls.Add(this.leadLagPlotTool);
             this.groupBox6.Controls.Add(this.minMaxPlotTool);
             this.groupBox6.Controls.Add(this.SD2PlotTool);
             this.groupBox6.Controls.Add(this.SD1PlotTool);
@@ -359,7 +364,7 @@ namespace OGLAD_UI
             this.groupBox6.Location = new System.Drawing.Point(3, 162);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupBox6.Size = new System.Drawing.Size(74, 153);
+            this.groupBox6.Size = new System.Drawing.Size(83, 153);
             this.groupBox6.TabIndex = 17;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Plot Tools";
@@ -447,8 +452,8 @@ namespace OGLAD_UI
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.46459F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 87.53541F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.7558F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 86.2442F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 195F));
             this.tableLayoutPanel1.Controls.Add(this.groupBox3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.gbxView, 1, 0);
@@ -470,16 +475,17 @@ namespace OGLAD_UI
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.signalGraphCE24);
+            this.groupBox3.Controls.Add(this.signalGraphCE1);
             this.groupBox3.Controls.Add(this.signalGraphPow);
             this.groupBox3.Controls.Add(this.signalGraphFreq);
-            this.groupBox3.Controls.Add(this.signalGraphPF);
             this.groupBox3.Controls.Add(this.signalGraphCurr);
             this.groupBox3.Controls.Add(this.signalGraphVolt);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(3, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(74, 153);
+            this.groupBox3.Size = new System.Drawing.Size(83, 153);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Display";
@@ -487,7 +493,7 @@ namespace OGLAD_UI
             // signalGraphPow
             // 
             this.signalGraphPow.AutoSize = true;
-            this.signalGraphPow.Location = new System.Drawing.Point(6, 124);
+            this.signalGraphPow.Location = new System.Drawing.Point(6, 99);
             this.signalGraphPow.Name = "signalGraphPow";
             this.signalGraphPow.Size = new System.Drawing.Size(70, 22);
             this.signalGraphPow.TabIndex = 4;
@@ -497,22 +503,12 @@ namespace OGLAD_UI
             // signalGraphFreq
             // 
             this.signalGraphFreq.AutoSize = true;
-            this.signalGraphFreq.Location = new System.Drawing.Point(6, 100);
+            this.signalGraphFreq.Location = new System.Drawing.Point(6, 76);
             this.signalGraphFreq.Name = "signalGraphFreq";
             this.signalGraphFreq.Size = new System.Drawing.Size(96, 22);
             this.signalGraphFreq.TabIndex = 3;
             this.signalGraphFreq.Text = "Frequency";
             this.signalGraphFreq.UseVisualStyleBackColor = true;
-            // 
-            // signalGraphPF
-            // 
-            this.signalGraphPF.AutoSize = true;
-            this.signalGraphPF.Location = new System.Drawing.Point(6, 76);
-            this.signalGraphPF.Name = "signalGraphPF";
-            this.signalGraphPF.Size = new System.Drawing.Size(117, 22);
-            this.signalGraphPF.TabIndex = 2;
-            this.signalGraphPF.Text = "Power Factor";
-            this.signalGraphPF.UseVisualStyleBackColor = true;
             // 
             // signalGraphCurr
             // 
@@ -542,10 +538,10 @@ namespace OGLAD_UI
             this.gbxView.Controls.Add(this.plotGraph);
             this.gbxView.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbxView.ForeColor = System.Drawing.Color.White;
-            this.gbxView.Location = new System.Drawing.Point(83, 3);
+            this.gbxView.Location = new System.Drawing.Point(92, 3);
             this.gbxView.Name = "gbxView";
             this.tableLayoutPanel1.SetRowSpan(this.gbxView, 2);
-            this.gbxView.Size = new System.Drawing.Size(561, 312);
+            this.gbxView.Size = new System.Drawing.Size(552, 312);
             this.gbxView.TabIndex = 5;
             this.gbxView.TabStop = false;
             this.gbxView.Text = "View";
@@ -560,7 +556,7 @@ namespace OGLAD_UI
             this.plotGraph.Location = new System.Drawing.Point(6, 19);
             this.plotGraph.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.plotGraph.Name = "plotGraph";
-            this.plotGraph.Size = new System.Drawing.Size(552, 289);
+            this.plotGraph.Size = new System.Drawing.Size(543, 289);
             this.plotGraph.TabIndex = 0;
             // 
             // groupBox4
@@ -657,7 +653,6 @@ namespace OGLAD_UI
             this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox7.Controls.Add(this.label2);
             this.groupBox7.Controls.Add(this.statSD2UpperVal);
             this.groupBox7.Controls.Add(this.statSD1UpperVal);
             this.groupBox7.Controls.Add(this.statMaxVal);
@@ -665,12 +660,11 @@ namespace OGLAD_UI
             this.groupBox7.Controls.Add(this.statSD2LowerVal);
             this.groupBox7.Controls.Add(this.statSD1LowerVal);
             this.groupBox7.Controls.Add(this.statMeanVal);
-            this.groupBox7.Controls.Add(this.statMax);
             this.groupBox7.Controls.Add(this.statMin);
             this.groupBox7.Controls.Add(this.statSD2);
             this.groupBox7.Controls.Add(this.statSD1);
             this.groupBox7.Controls.Add(this.statMean);
-            this.groupBox7.Controls.Add(this.richTextBox1);
+            this.groupBox7.Controls.Add(this.panel1);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox7.ForeColor = System.Drawing.Color.White;
             this.groupBox7.Location = new System.Drawing.Point(650, 3);
@@ -760,17 +754,6 @@ namespace OGLAD_UI
             this.statMeanVal.TabIndex = 6;
             this.statMeanVal.Text = "N/A";
             // 
-            // statMax
-            // 
-            this.statMax.AutoSize = true;
-            this.statMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
-            this.statMax.ForeColor = System.Drawing.Color.Black;
-            this.statMax.Location = new System.Drawing.Point(21, 297);
-            this.statMax.Name = "statMax";
-            this.statMax.Size = new System.Drawing.Size(40, 18);
-            this.statMax.TabIndex = 5;
-            this.statMax.Text = "Max:";
-            // 
             // statMin
             // 
             this.statMin.AutoSize = true;
@@ -815,26 +798,80 @@ namespace OGLAD_UI
             this.statMean.TabIndex = 1;
             this.statMean.Text = "Mean:";
             // 
-            // richTextBox1
+            // panel1
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
-            this.richTextBox1.Location = new System.Drawing.Point(6, 19);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(178, 291);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.panel1.Controls.Add(this.statLeadLagVal);
+            this.panel1.Controls.Add(this.statLeadLag);
+            this.panel1.Controls.Add(this.statMax);
+            this.panel1.Location = new System.Drawing.Point(0, 19);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(190, 289);
+            this.panel1.TabIndex = 13;
             // 
-            // label2
+            // statLeadLagVal
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(59, 86);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 18);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "label2";
+            this.statLeadLagVal.AutoSize = true;
+            this.statLeadLagVal.ForeColor = System.Drawing.Color.Black;
+            this.statLeadLagVal.Location = new System.Drawing.Point(112, 338);
+            this.statLeadLagVal.Name = "statLeadLagVal";
+            this.statLeadLagVal.Size = new System.Drawing.Size(32, 18);
+            this.statLeadLagVal.TabIndex = 9;
+            this.statLeadLagVal.Text = "N/A";
+            // 
+            // statLeadLag
+            // 
+            this.statLeadLag.AutoSize = true;
+            this.statLeadLag.ForeColor = System.Drawing.Color.Black;
+            this.statLeadLag.Location = new System.Drawing.Point(21, 338);
+            this.statLeadLag.Name = "statLeadLag";
+            this.statLeadLag.Size = new System.Drawing.Size(65, 18);
+            this.statLeadLag.TabIndex = 8;
+            this.statLeadLag.Text = "Current: ";
+            // 
+            // statMax
+            // 
+            this.statMax.AutoSize = true;
+            this.statMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.statMax.ForeColor = System.Drawing.Color.Black;
+            this.statMax.Location = new System.Drawing.Point(21, 278);
+            this.statMax.Name = "statMax";
+            this.statMax.Size = new System.Drawing.Size(40, 18);
+            this.statMax.TabIndex = 5;
+            this.statMax.Text = "Max:";
+            // 
+            // leadLagPlotTool
+            // 
+            this.leadLagPlotTool.AutoSize = true;
+            this.leadLagPlotTool.Location = new System.Drawing.Point(6, 170);
+            this.leadLagPlotTool.Name = "leadLagPlotTool";
+            this.leadLagPlotTool.Size = new System.Drawing.Size(133, 22);
+            this.leadLagPlotTool.TabIndex = 5;
+            this.leadLagPlotTool.Text = "Leading/Lagging";
+            this.leadLagPlotTool.UseVisualStyleBackColor = true;
+            // 
+            // signalGraphCE1
+            // 
+            this.signalGraphCE1.AutoSize = true;
+            this.signalGraphCE1.Location = new System.Drawing.Point(6, 122);
+            this.signalGraphCE1.Name = "signalGraphCE1";
+            this.signalGraphCE1.Size = new System.Drawing.Size(138, 22);
+            this.signalGraphCE1.TabIndex = 5;
+            this.signalGraphCE1.Text = "Cum. Energy 1hr";
+            this.signalGraphCE1.UseVisualStyleBackColor = true;
+            // 
+            // signalGraphCE24
+            // 
+            this.signalGraphCE24.AutoSize = true;
+            this.signalGraphCE24.Location = new System.Drawing.Point(6, 145);
+            this.signalGraphCE24.Name = "signalGraphCE24";
+            this.signalGraphCE24.Size = new System.Drawing.Size(146, 22);
+            this.signalGraphCE24.TabIndex = 6;
+            this.signalGraphCE24.Text = "Cum. Energy 24hr";
+            this.signalGraphCE24.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -863,6 +900,8 @@ namespace OGLAD_UI
             this.groupBox1.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -909,7 +948,6 @@ namespace OGLAD_UI
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox signalGraphFreq;
-        private System.Windows.Forms.CheckBox signalGraphPF;
         private System.Windows.Forms.CheckBox signalGraphCurr;
         private System.Windows.Forms.CheckBox signalGraphVolt;
         private System.Windows.Forms.GroupBox gbxView;
@@ -936,9 +974,13 @@ namespace OGLAD_UI
         private System.Windows.Forms.ToolStripMenuItem saveStatValuesToolStripMenuItem;
         private System.Windows.Forms.Label statSD2UpperVal;
         private System.Windows.Forms.Label statSD1UpperVal;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.CheckBox signalGraphPow;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label statLeadLag;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label statLeadLagVal;
+        private System.Windows.Forms.CheckBox leadLagPlotTool;
+        private System.Windows.Forms.CheckBox signalGraphCE1;
+        private System.Windows.Forms.CheckBox signalGraphCE24;
     }
 }
 
