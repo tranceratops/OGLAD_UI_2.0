@@ -70,19 +70,8 @@ namespace OGLAD_UI
         public void SetupGraphLabels()
         {
             plotGraph.Plot.XLabel("Time");
-            plotGraph.Plot.YLabel(" ");
             plotGraph.Plot.Title("Signal Graph");
             plotGraph.Plot.XAxis.DateTimeFormat(true);
-            signalGraphVolt.Checked = false;
-            signalGraphCurr.Checked = false;
-            signalGraphFreq.Checked = false;
-            signalGraphPow.Checked = false;
-            histPlotTool.Checked = false;
-            meanPlotTool.Checked = false;
-            SD1PlotTool.Checked = false;
-            SD2PlotTool.Checked = false;
-            minMaxPlotTool.Checked = false;
-            leadLagPlotTool.Checked = false;
         }
 
         public void signalGraphing(double[] tArr, double[] valueArr)
@@ -580,46 +569,7 @@ namespace OGLAD_UI
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (guiRunning)
-            {
-                guiRunning = false;
-                plotGraph.Plot.Clear();
-                voltageArr.Clear();
-                currentArr.Clear();
-                pfArr.Clear();
-                freqArr.Clear();
-                timeArr.Clear();
-                ce1Arr.Clear();
-                ce24Arr.Clear();
-                plotGraph.Refresh();
-                currMean = 0;
-                currSD1Low = 0;
-                currSD1Up = 0;
-                currSD2Low = 0;
-                currSD2Up = 0;
-                currMin = 0;
-                currMax = 0;
-                leadlag = " ";
-                statMeanVal.Text = "N/A";
-                statSD1LowerVal.Text = "N/A";
-                statSD2LowerVal.Text = "N/A";
-                statMinVal.Text = "N/A";
-                statMaxVal.Text = "N/A";
-                statLeadLagVal.Text = "N/A";
-                statLeadLagVal.Location = new System.Drawing.Point(111, 338);
-                statSD1LowerVal.Location = new System.Drawing.Point(111, 104);
-                statSD2LowerVal.Location = new System.Drawing.Point(111, 169);
-                statSD1UpperVal.Visible = false;
-                statSD2UpperVal.Visible = false;
-                txtStatus.Text = "Ready for data read-in.";
-                SetupGraphLabels();
-                plotGraph.Refresh();
-
-            }
-            else
-            {
-
-            }
+            Application.Restart();
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -636,6 +586,11 @@ namespace OGLAD_UI
         private void quickControlAssistToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ScottPlot.FormHelp().Show();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
