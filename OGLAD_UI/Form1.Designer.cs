@@ -36,33 +36,11 @@ namespace OGLAD_UI
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.capturePlotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveStatValuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recentFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recentProfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fullScreenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.displayMethodToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.meterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.commandLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importAndExportSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getStartedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.leadLagPlotTool = new System.Windows.Forms.CheckBox();
             this.minMaxPlotTool = new System.Windows.Forms.CheckBox();
             this.SD2PlotTool = new System.Windows.Forms.CheckBox();
             this.SD1PlotTool = new System.Windows.Forms.CheckBox();
@@ -71,6 +49,8 @@ namespace OGLAD_UI
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.signalGraphCE24 = new System.Windows.Forms.CheckBox();
+            this.signalGraphCE1 = new System.Windows.Forms.CheckBox();
             this.signalGraphPow = new System.Windows.Forms.CheckBox();
             this.signalGraphFreq = new System.Windows.Forms.CheckBox();
             this.signalGraphCurr = new System.Windows.Forms.CheckBox();
@@ -100,9 +80,16 @@ namespace OGLAD_UI
             this.statLeadLagVal = new System.Windows.Forms.Label();
             this.statLeadLag = new System.Windows.Forms.Label();
             this.statMax = new System.Windows.Forms.Label();
-            this.leadLagPlotTool = new System.Windows.Forms.CheckBox();
-            this.signalGraphCE1 = new System.Windows.Forms.CheckBox();
-            this.signalGraphCE24 = new System.Windows.Forms.CheckBox();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fullScreenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportStatValuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -126,7 +113,6 @@ namespace OGLAD_UI
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.viewToolStripMenuItem,
-            this.meterToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -141,9 +127,6 @@ namespace OGLAD_UI
             this.newToolStripMenuItem,
             this.openFileToolStripMenuItem,
             this.saveToolStripMenuItem,
-            this.settingsToolStripMenuItem,
-            this.recentFileToolStripMenuItem,
-            this.recentProfilesToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -152,201 +135,44 @@ namespace OGLAD_UI
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openFileToolStripMenuItem
             // 
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openFileToolStripMenuItem.Text = "Open File";
             this.openFileToolStripMenuItem.Click += new System.EventHandler(this.openFileToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
-            this.saveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.capturePlotToolStripMenuItem,
-            this.saveStatValuesToolStripMenuItem});
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.saveToolStripMenuItem.Text = "Save";
-            // 
-            // capturePlotToolStripMenuItem
-            // 
-            this.capturePlotToolStripMenuItem.Name = "capturePlotToolStripMenuItem";
-            this.capturePlotToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.capturePlotToolStripMenuItem.Text = "Capture Plot";
-            this.capturePlotToolStripMenuItem.Click += new System.EventHandler(this.capturePlotToolStripMenuItem_Click);
-            // 
-            // saveStatValuesToolStripMenuItem
-            // 
-            this.saveStatValuesToolStripMenuItem.Name = "saveStatValuesToolStripMenuItem";
-            this.saveStatValuesToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.saveStatValuesToolStripMenuItem.Text = "Save Stat Values";
-            // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            // 
-            // recentFileToolStripMenuItem
-            // 
-            this.recentFileToolStripMenuItem.Name = "recentFileToolStripMenuItem";
-            this.recentFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.recentFileToolStripMenuItem.Text = "Recent Files";
-            // 
-            // recentProfilesToolStripMenuItem
-            // 
-            this.recentProfilesToolStripMenuItem.Name = "recentProfilesToolStripMenuItem";
-            this.recentProfilesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.recentProfilesToolStripMenuItem.Text = "Recent Profiles";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Text = "Save Plot";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cutToolStripMenuItem,
-            this.copyToolStripMenuItem,
-            this.pasteToolStripMenuItem,
-            this.deleteToolStripMenuItem,
-            this.selectAllToolStripMenuItem});
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
-            // 
-            // cutToolStripMenuItem
-            // 
-            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.cutToolStripMenuItem.Text = "Cut";
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.copyToolStripMenuItem.Text = "Copy";
-            // 
-            // pasteToolStripMenuItem
-            // 
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.pasteToolStripMenuItem.Text = "Paste";
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            // 
-            // selectAllToolStripMenuItem
-            // 
-            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.selectAllToolStripMenuItem.Text = "Select All";
-            // 
-            // viewToolStripMenuItem
-            // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fullScreenToolStripMenuItem,
-            this.tabOrderToolStripMenuItem,
-            this.displayMethodToolStripMenuItem});
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "View";
-            // 
-            // fullScreenToolStripMenuItem
-            // 
-            this.fullScreenToolStripMenuItem.Name = "fullScreenToolStripMenuItem";
-            this.fullScreenToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.fullScreenToolStripMenuItem.Text = "Full Screen";
-            // 
-            // tabOrderToolStripMenuItem
-            // 
-            this.tabOrderToolStripMenuItem.Name = "tabOrderToolStripMenuItem";
-            this.tabOrderToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.tabOrderToolStripMenuItem.Text = "Tab Order";
-            // 
-            // displayMethodToolStripMenuItem
-            // 
-            this.displayMethodToolStripMenuItem.Name = "displayMethodToolStripMenuItem";
-            this.displayMethodToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.displayMethodToolStripMenuItem.Text = "Display Method";
-            // 
-            // meterToolStripMenuItem
-            // 
-            this.meterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deviceToolStripMenuItem});
-            this.meterToolStripMenuItem.Name = "meterToolStripMenuItem";
-            this.meterToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.meterToolStripMenuItem.Text = "Meter";
-            // 
-            // deviceToolStripMenuItem
-            // 
-            this.deviceToolStripMenuItem.Name = "deviceToolStripMenuItem";
-            this.deviceToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-            this.deviceToolStripMenuItem.Text = "Device";
-            // 
-            // toolsToolStripMenuItem
-            // 
-            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.optionsToolStripMenuItem,
-            this.commandLineToolStripMenuItem,
-            this.importAndExportSettingsToolStripMenuItem});
-            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
-            this.toolsToolStripMenuItem.Text = "Tools";
-            // 
-            // optionsToolStripMenuItem
-            // 
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.optionsToolStripMenuItem.Text = "Options";
-            // 
-            // commandLineToolStripMenuItem
-            // 
-            this.commandLineToolStripMenuItem.Name = "commandLineToolStripMenuItem";
-            this.commandLineToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.commandLineToolStripMenuItem.Text = "Command Line";
-            // 
-            // importAndExportSettingsToolStripMenuItem
-            // 
-            this.importAndExportSettingsToolStripMenuItem.Name = "importAndExportSettingsToolStripMenuItem";
-            this.importAndExportSettingsToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.importAndExportSettingsToolStripMenuItem.Text = "Import and Export Settings";
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewHelpToolStripMenuItem,
-            this.getStartedToolStripMenuItem,
-            this.checkForUpdatesToolStripMenuItem});
+            this.getStartedToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // viewHelpToolStripMenuItem
-            // 
-            this.viewHelpToolStripMenuItem.Name = "viewHelpToolStripMenuItem";
-            this.viewHelpToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.viewHelpToolStripMenuItem.Text = "View Help";
-            // 
             // getStartedToolStripMenuItem
             // 
             this.getStartedToolStripMenuItem.Name = "getStartedToolStripMenuItem";
-            this.getStartedToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.getStartedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.getStartedToolStripMenuItem.Text = "Get Started";
-            // 
-            // checkForUpdatesToolStripMenuItem
-            // 
-            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.checkForUpdatesToolStripMenuItem.Text = "Check for Updates";
+            this.getStartedToolStripMenuItem.Click += new System.EventHandler(this.getStartedToolStripMenuItem_Click);
             // 
             // groupBox6
             // 
@@ -364,10 +190,20 @@ namespace OGLAD_UI
             this.groupBox6.Location = new System.Drawing.Point(3, 162);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupBox6.Size = new System.Drawing.Size(83, 153);
+            this.groupBox6.Size = new System.Drawing.Size(80, 153);
             this.groupBox6.TabIndex = 17;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Plot Tools";
+            // 
+            // leadLagPlotTool
+            // 
+            this.leadLagPlotTool.AutoSize = true;
+            this.leadLagPlotTool.Location = new System.Drawing.Point(6, 170);
+            this.leadLagPlotTool.Name = "leadLagPlotTool";
+            this.leadLagPlotTool.Size = new System.Drawing.Size(133, 22);
+            this.leadLagPlotTool.TabIndex = 5;
+            this.leadLagPlotTool.Text = "Leading/Lagging";
+            this.leadLagPlotTool.UseVisualStyleBackColor = true;
             // 
             // minMaxPlotTool
             // 
@@ -452,8 +288,8 @@ namespace OGLAD_UI
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.7558F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 86.2442F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.29212F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 86.70789F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 195F));
             this.tableLayoutPanel1.Controls.Add(this.groupBox3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.gbxView, 1, 0);
@@ -485,10 +321,30 @@ namespace OGLAD_UI
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(3, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(83, 153);
+            this.groupBox3.Size = new System.Drawing.Size(80, 153);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Display";
+            // 
+            // signalGraphCE24
+            // 
+            this.signalGraphCE24.AutoSize = true;
+            this.signalGraphCE24.Location = new System.Drawing.Point(6, 145);
+            this.signalGraphCE24.Name = "signalGraphCE24";
+            this.signalGraphCE24.Size = new System.Drawing.Size(136, 22);
+            this.signalGraphCE24.TabIndex = 6;
+            this.signalGraphCE24.Text = "Tot. Energy 24hr";
+            this.signalGraphCE24.UseVisualStyleBackColor = true;
+            // 
+            // signalGraphCE1
+            // 
+            this.signalGraphCE1.AutoSize = true;
+            this.signalGraphCE1.Location = new System.Drawing.Point(6, 122);
+            this.signalGraphCE1.Name = "signalGraphCE1";
+            this.signalGraphCE1.Size = new System.Drawing.Size(128, 22);
+            this.signalGraphCE1.TabIndex = 5;
+            this.signalGraphCE1.Text = "Tot. Energy 1hr";
+            this.signalGraphCE1.UseVisualStyleBackColor = true;
             // 
             // signalGraphPow
             // 
@@ -538,10 +394,10 @@ namespace OGLAD_UI
             this.gbxView.Controls.Add(this.plotGraph);
             this.gbxView.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbxView.ForeColor = System.Drawing.Color.White;
-            this.gbxView.Location = new System.Drawing.Point(92, 3);
+            this.gbxView.Location = new System.Drawing.Point(89, 3);
             this.gbxView.Name = "gbxView";
             this.tableLayoutPanel1.SetRowSpan(this.gbxView, 2);
-            this.gbxView.Size = new System.Drawing.Size(552, 312);
+            this.gbxView.Size = new System.Drawing.Size(555, 312);
             this.gbxView.TabIndex = 5;
             this.gbxView.TabStop = false;
             this.gbxView.Text = "View";
@@ -556,7 +412,7 @@ namespace OGLAD_UI
             this.plotGraph.Location = new System.Drawing.Point(6, 19);
             this.plotGraph.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.plotGraph.Name = "plotGraph";
-            this.plotGraph.Size = new System.Drawing.Size(543, 289);
+            this.plotGraph.Size = new System.Drawing.Size(546, 289);
             this.plotGraph.TabIndex = 0;
             // 
             // groupBox4
@@ -704,7 +560,7 @@ namespace OGLAD_UI
             this.statMaxVal.AutoSize = true;
             this.statMaxVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
             this.statMaxVal.ForeColor = System.Drawing.Color.Black;
-            this.statMaxVal.Location = new System.Drawing.Point(109, 297);
+            this.statMaxVal.Location = new System.Drawing.Point(110, 297);
             this.statMaxVal.Name = "statMaxVal";
             this.statMaxVal.Size = new System.Drawing.Size(32, 18);
             this.statMaxVal.TabIndex = 10;
@@ -759,7 +615,7 @@ namespace OGLAD_UI
             this.statMin.AutoSize = true;
             this.statMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
             this.statMin.ForeColor = System.Drawing.Color.Black;
-            this.statMin.Location = new System.Drawing.Point(21, 234);
+            this.statMin.Location = new System.Drawing.Point(23, 234);
             this.statMin.Name = "statMin";
             this.statMin.Size = new System.Drawing.Size(36, 18);
             this.statMin.TabIndex = 4;
@@ -807,9 +663,9 @@ namespace OGLAD_UI
             this.panel1.Controls.Add(this.statLeadLagVal);
             this.panel1.Controls.Add(this.statLeadLag);
             this.panel1.Controls.Add(this.statMax);
-            this.panel1.Location = new System.Drawing.Point(0, 19);
+            this.panel1.Location = new System.Drawing.Point(6, 19);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(190, 289);
+            this.panel1.Size = new System.Drawing.Size(178, 289);
             this.panel1.TabIndex = 13;
             // 
             // statLeadLagVal
@@ -826,7 +682,7 @@ namespace OGLAD_UI
             // 
             this.statLeadLag.AutoSize = true;
             this.statLeadLag.ForeColor = System.Drawing.Color.Black;
-            this.statLeadLag.Location = new System.Drawing.Point(21, 338);
+            this.statLeadLag.Location = new System.Drawing.Point(18, 338);
             this.statLeadLag.Name = "statLeadLag";
             this.statLeadLag.Size = new System.Drawing.Size(65, 18);
             this.statLeadLag.TabIndex = 8;
@@ -837,41 +693,83 @@ namespace OGLAD_UI
             this.statMax.AutoSize = true;
             this.statMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
             this.statMax.ForeColor = System.Drawing.Color.Black;
-            this.statMax.Location = new System.Drawing.Point(21, 278);
+            this.statMax.Location = new System.Drawing.Point(18, 278);
             this.statMax.Name = "statMax";
             this.statMax.Size = new System.Drawing.Size(40, 18);
             this.statMax.TabIndex = 5;
             this.statMax.Text = "Max:";
             // 
-            // leadLagPlotTool
+            // toolsToolStripMenuItem
             // 
-            this.leadLagPlotTool.AutoSize = true;
-            this.leadLagPlotTool.Location = new System.Drawing.Point(6, 170);
-            this.leadLagPlotTool.Name = "leadLagPlotTool";
-            this.leadLagPlotTool.Size = new System.Drawing.Size(133, 22);
-            this.leadLagPlotTool.TabIndex = 5;
-            this.leadLagPlotTool.Text = "Leading/Lagging";
-            this.leadLagPlotTool.UseVisualStyleBackColor = true;
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportStatValuesToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
             // 
-            // signalGraphCE1
+            // fullScreenToolStripMenuItem
             // 
-            this.signalGraphCE1.AutoSize = true;
-            this.signalGraphCE1.Location = new System.Drawing.Point(6, 122);
-            this.signalGraphCE1.Name = "signalGraphCE1";
-            this.signalGraphCE1.Size = new System.Drawing.Size(138, 22);
-            this.signalGraphCE1.TabIndex = 5;
-            this.signalGraphCE1.Text = "Cum. Energy 1hr";
-            this.signalGraphCE1.UseVisualStyleBackColor = true;
+            this.fullScreenToolStripMenuItem.Name = "fullScreenToolStripMenuItem";
+            this.fullScreenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fullScreenToolStripMenuItem.Text = "Full Screen";
+            this.fullScreenToolStripMenuItem.Click += new System.EventHandler(this.fullScreenToolStripMenuItem_Click);
             // 
-            // signalGraphCE24
+            // viewToolStripMenuItem
             // 
-            this.signalGraphCE24.AutoSize = true;
-            this.signalGraphCE24.Location = new System.Drawing.Point(6, 145);
-            this.signalGraphCE24.Name = "signalGraphCE24";
-            this.signalGraphCE24.Size = new System.Drawing.Size(146, 22);
-            this.signalGraphCE24.TabIndex = 6;
-            this.signalGraphCE24.Text = "Cum. Energy 24hr";
-            this.signalGraphCE24.UseVisualStyleBackColor = true;
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fullScreenToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // cutToolStripMenuItem
+            // 
+            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cutToolStripMenuItem.Text = "Cut";
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            // 
+            // pasteToolStripMenuItem
+            // 
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pasteToolStripMenuItem.Text = "Paste";
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            // 
+            // selectAllToolStripMenuItem
+            // 
+            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.selectAllToolStripMenuItem.Text = "Select All";
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cutToolStripMenuItem,
+            this.copyToolStripMenuItem,
+            this.pasteToolStripMenuItem,
+            this.deleteToolStripMenuItem,
+            this.selectAllToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // exportStatValuesToolStripMenuItem
+            // 
+            this.exportStatValuesToolStripMenuItem.Name = "exportStatValuesToolStripMenuItem";
+            this.exportStatValuesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportStatValuesToolStripMenuItem.Text = "Export Stat Values";
+            this.exportStatValuesToolStripMenuItem.Click += new System.EventHandler(this.exportStatValuesToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -914,30 +812,9 @@ namespace OGLAD_UI
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem recentFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem recentProfilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem meterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fullScreenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tabOrderToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem displayMethodToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deviceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem commandLineToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importAndExportSettingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewHelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem getStartedToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.CheckBox histPlotTool;
@@ -970,8 +847,6 @@ namespace OGLAD_UI
         private System.Windows.Forms.Label statSD2LowerVal;
         private System.Windows.Forms.Label statSD1LowerVal;
         private System.Windows.Forms.Label statMeanVal;
-        private System.Windows.Forms.ToolStripMenuItem capturePlotToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveStatValuesToolStripMenuItem;
         private System.Windows.Forms.Label statSD2UpperVal;
         private System.Windows.Forms.Label statSD1UpperVal;
         private System.Windows.Forms.CheckBox signalGraphPow;
@@ -981,6 +856,16 @@ namespace OGLAD_UI
         private System.Windows.Forms.CheckBox leadLagPlotTool;
         private System.Windows.Forms.CheckBox signalGraphCE1;
         private System.Windows.Forms.CheckBox signalGraphCE24;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fullScreenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportStatValuesToolStripMenuItem;
     }
 }
 
