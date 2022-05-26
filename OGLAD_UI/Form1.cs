@@ -621,5 +621,21 @@ namespace OGLAD_UI
 
             }
         }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetImage(plotGraph.Plot.Render());
+            MessageBox.Show("Plot has been copied.");
+        }
+
+        private void openInNewWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ScottPlot.FormsPlotViewer(plotGraph.Plot).Show();
+        }
+
+        private void quickControlAssistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ScottPlot.FormHelp().Show();
+        }
     }
 }
