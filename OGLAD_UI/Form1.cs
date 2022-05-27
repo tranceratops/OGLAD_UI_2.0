@@ -23,6 +23,8 @@ namespace OGLAD_UI
         List<double> timeArr = new List<double>();
         List<double> pfArr = new List<double>();
         List<double> freqArr = new List<double>();
+        //List<double> leadLagArr = new List<double>();
+        //List<double> apparentArr = new List<double>();
         List<double> powerArr = new List<double>();
 
         List<double> ce1Arr = new List<double>();
@@ -33,6 +35,8 @@ namespace OGLAD_UI
         double[] currentArrY;
         double[] pfArrY;
         double[] freqArrY;
+        //double[] leadLagArrY;
+        //double[] apparentArrY;
         double[] powerArrY;
 
         double histBinSize;
@@ -513,6 +517,8 @@ namespace OGLAD_UI
                     currentArr.Add(Convert.ToDouble(tmp[2]));
                     pfArr.Add(Convert.ToDouble(tmp[3]));
                     freqArr.Add(Convert.ToDouble(tmp[4]));
+                    //leadLagArr.Add(Convert.ToDouble(tmp[4]));
+                    //apparentArr.Add(Convert.ToDouble(tmp[5]));
                     powerArr.Add(Convert.ToDouble(tmp[5]));
                     counter++;
                 }
@@ -521,6 +527,8 @@ namespace OGLAD_UI
                 currentArrY = currentArr.ToArray();
                 pfArrY = pfArr.ToArray();
                 freqArrY = freqArr.ToArray();
+                //leadLagArrY = leadLagArr.ToArray();
+                //apparentArrY = apparentArr.ToArray();
                 powerArrY = powerArr.ToArray();
                 txtStatus.Text = "Data is loaded and ready to plot."; //status update for completion
             }
