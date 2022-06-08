@@ -126,7 +126,7 @@
             this.ClientSize = new System.Drawing.Size(800, 511);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form5";
-            this.Text = "Form5";
+            this.Text = "LAGUI Guide - Using Histogram Controls";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

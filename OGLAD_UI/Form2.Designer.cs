@@ -189,7 +189,7 @@ namespace OGLAD_UI
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.vScrollBar1);
             this.Name = "GettingStarted";
-            this.Text = "Form2";
+            this.Text = "LAGUI Guide - Importing a File";
             this.Load += new System.EventHandler(this.GettingStarted_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

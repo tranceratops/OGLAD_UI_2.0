@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox6.Text" xml:space="preserve">
-    <value>If users wish to see signal waveform graphs of other electrical characteristics or histogram representations, users must clear the plotting canvas beforehand. If users are using new data from a different CSV, it is recommended that users go to File -&gt; New before importing the new data.</value>
-  </data>
   <data name="textBox1.Text" xml:space="preserve">
     <value>When using the Histogram Controls, it is best to input any number into the text field, even if you do not know. Otherwise, you will get caught in a loop. Future versions will attempt to fix this problem.</value>
+  </data>
+  <data name="textBox6.Text" xml:space="preserve">
+    <value>If users wish to see signal waveform graphs of other electrical characteristics or histogram representations, users must clear the plotting canvas beforehand. If users are using new data from a different CSV, it is recommended that users go to File -&gt; New before importing the new data.</value>
   </data>
 </root>
