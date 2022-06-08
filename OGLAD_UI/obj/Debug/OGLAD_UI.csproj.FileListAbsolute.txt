@@ -30,3 +30,8 @@ C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\MetroFramework.dll
 C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\bin\Debug\MetroFramework.Fonts.dll
 C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.GettingStarted.resources
 C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.csproj.SuggestedBindingRedirects.cache
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.Form3.resources
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.Form4.resources
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.Form5.resources
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.Form6.resources
+C:\Users\julia\source\repos\OGLAD_UI\OGLAD_UI\obj\Debug\OGLAD_UI.Form7.resources

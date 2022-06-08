@@ -22,5 +22,9 @@ namespace OGLAD_UI
 
         }
 
+        private void SectionOneExplain_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

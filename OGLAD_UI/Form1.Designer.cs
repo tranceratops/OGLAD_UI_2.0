@@ -41,11 +41,13 @@ namespace OGLAD_UI
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fullScreenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openInNewWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportStatValuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.getStartedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quickControlAssistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.PFPlotTool = new System.Windows.Forms.CheckBox();
             this.leadLagPlotTool = new System.Windows.Forms.CheckBox();
             this.minMaxPlotTool = new System.Windows.Forms.CheckBox();
             this.SD2PlotTool = new System.Windows.Forms.CheckBox();
@@ -55,10 +57,7 @@ namespace OGLAD_UI
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.signalGraphCE24 = new System.Windows.Forms.CheckBox();
-            this.signalGraphCE1 = new System.Windows.Forms.CheckBox();
             this.signalGraphPow = new System.Windows.Forms.CheckBox();
-            this.signalGraphFreq = new System.Windows.Forms.CheckBox();
             this.signalGraphCurr = new System.Windows.Forms.CheckBox();
             this.signalGraphVolt = new System.Windows.Forms.CheckBox();
             this.gbxView = new System.Windows.Forms.GroupBox();
@@ -83,11 +82,18 @@ namespace OGLAD_UI
             this.statSD1 = new System.Windows.Forms.Label();
             this.statMean = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.statPFVal = new System.Windows.Forms.Label();
+            this.statPF = new System.Windows.Forms.Label();
             this.statLeadLagVal = new System.Windows.Forms.Label();
             this.statLeadLag = new System.Windows.Forms.Label();
             this.statMax = new System.Windows.Forms.Label();
-            this.openInNewWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.quickControlAssistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getStartedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importingAFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.interactingWithDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formattingExternalDataFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usingHistogramControlsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fAQToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -169,7 +175,7 @@ namespace OGLAD_UI
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
@@ -188,6 +194,13 @@ namespace OGLAD_UI
             this.fullScreenToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.fullScreenToolStripMenuItem.Text = "Full Screen";
             this.fullScreenToolStripMenuItem.Click += new System.EventHandler(this.fullScreenToolStripMenuItem_Click);
+            // 
+            // openInNewWindowToolStripMenuItem
+            // 
+            this.openInNewWindowToolStripMenuItem.Name = "openInNewWindowToolStripMenuItem";
+            this.openInNewWindowToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.openInNewWindowToolStripMenuItem.Text = "Open in New Window";
+            this.openInNewWindowToolStripMenuItem.Click += new System.EventHandler(this.openInNewWindowToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -208,23 +221,25 @@ namespace OGLAD_UI
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.getStartedToolStripMenuItem,
-            this.quickControlAssistToolStripMenuItem});
+            this.quickControlAssistToolStripMenuItem,
+            this.fAQToolStripMenuItem1});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // getStartedToolStripMenuItem
+            // quickControlAssistToolStripMenuItem
             // 
-            this.getStartedToolStripMenuItem.Name = "getStartedToolStripMenuItem";
-            this.getStartedToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.getStartedToolStripMenuItem.Text = "Get Started";
-            this.getStartedToolStripMenuItem.Click += new System.EventHandler(this.getStartedToolStripMenuItem_Click);
+            this.quickControlAssistToolStripMenuItem.Name = "quickControlAssistToolStripMenuItem";
+            this.quickControlAssistToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.quickControlAssistToolStripMenuItem.Text = "Quick Control Assist";
+            this.quickControlAssistToolStripMenuItem.Click += new System.EventHandler(this.quickControlAssistToolStripMenuItem_Click);
             // 
             // groupBox6
             // 
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox6.Controls.Add(this.PFPlotTool);
             this.groupBox6.Controls.Add(this.leadLagPlotTool);
             this.groupBox6.Controls.Add(this.minMaxPlotTool);
             this.groupBox6.Controls.Add(this.SD2PlotTool);
@@ -233,18 +248,28 @@ namespace OGLAD_UI
             this.groupBox6.Controls.Add(this.histPlotTool);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.ForeColor = System.Drawing.Color.White;
-            this.groupBox6.Location = new System.Drawing.Point(3, 162);
+            this.groupBox6.Location = new System.Drawing.Point(3, 83);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.groupBox6.Size = new System.Drawing.Size(80, 153);
+            this.groupBox6.Size = new System.Drawing.Size(80, 231);
             this.groupBox6.TabIndex = 17;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Plot Tools";
             // 
+            // PFPlotTool
+            // 
+            this.PFPlotTool.AutoSize = true;
+            this.PFPlotTool.Location = new System.Drawing.Point(6, 250);
+            this.PFPlotTool.Name = "PFPlotTool";
+            this.PFPlotTool.Size = new System.Drawing.Size(117, 22);
+            this.PFPlotTool.TabIndex = 6;
+            this.PFPlotTool.Text = "Power Factor";
+            this.PFPlotTool.UseVisualStyleBackColor = true;
+            // 
             // leadLagPlotTool
             // 
             this.leadLagPlotTool.AutoSize = true;
-            this.leadLagPlotTool.Location = new System.Drawing.Point(6, 170);
+            this.leadLagPlotTool.Location = new System.Drawing.Point(6, 214);
             this.leadLagPlotTool.Name = "leadLagPlotTool";
             this.leadLagPlotTool.Size = new System.Drawing.Size(133, 22);
             this.leadLagPlotTool.TabIndex = 5;
@@ -255,7 +280,7 @@ namespace OGLAD_UI
             // 
             this.minMaxPlotTool.AutoSize = true;
             this.minMaxPlotTool.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.minMaxPlotTool.Location = new System.Drawing.Point(6, 142);
+            this.minMaxPlotTool.Location = new System.Drawing.Point(6, 178);
             this.minMaxPlotTool.Name = "minMaxPlotTool";
             this.minMaxPlotTool.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.minMaxPlotTool.Size = new System.Drawing.Size(83, 22);
@@ -268,7 +293,7 @@ namespace OGLAD_UI
             // 
             this.SD2PlotTool.AutoSize = true;
             this.SD2PlotTool.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.SD2PlotTool.Location = new System.Drawing.Point(6, 114);
+            this.SD2PlotTool.Location = new System.Drawing.Point(6, 142);
             this.SD2PlotTool.Name = "SD2PlotTool";
             this.SD2PlotTool.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.SD2PlotTool.Size = new System.Drawing.Size(60, 22);
@@ -281,7 +306,7 @@ namespace OGLAD_UI
             // 
             this.SD1PlotTool.AutoSize = true;
             this.SD1PlotTool.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.SD1PlotTool.Location = new System.Drawing.Point(6, 86);
+            this.SD1PlotTool.Location = new System.Drawing.Point(6, 106);
             this.SD1PlotTool.Name = "SD1PlotTool";
             this.SD1PlotTool.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.SD1PlotTool.Size = new System.Drawing.Size(60, 22);
@@ -294,7 +319,7 @@ namespace OGLAD_UI
             // 
             this.meanPlotTool.AutoSize = true;
             this.meanPlotTool.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.meanPlotTool.Location = new System.Drawing.Point(6, 58);
+            this.meanPlotTool.Location = new System.Drawing.Point(6, 72);
             this.meanPlotTool.Name = "meanPlotTool";
             this.meanPlotTool.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.meanPlotTool.Size = new System.Drawing.Size(64, 22);
@@ -307,7 +332,7 @@ namespace OGLAD_UI
             // 
             this.histPlotTool.AutoSize = true;
             this.histPlotTool.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.histPlotTool.Location = new System.Drawing.Point(6, 30);
+            this.histPlotTool.Location = new System.Drawing.Point(6, 36);
             this.histPlotTool.Name = "histPlotTool";
             this.histPlotTool.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.histPlotTool.Size = new System.Drawing.Size(96, 22);
@@ -345,8 +370,8 @@ namespace OGLAD_UI
             this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 10);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.23659F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 74.7634F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 128F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(843, 446);
@@ -357,65 +382,32 @@ namespace OGLAD_UI
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.signalGraphCE24);
-            this.groupBox3.Controls.Add(this.signalGraphCE1);
             this.groupBox3.Controls.Add(this.signalGraphPow);
-            this.groupBox3.Controls.Add(this.signalGraphFreq);
             this.groupBox3.Controls.Add(this.signalGraphCurr);
             this.groupBox3.Controls.Add(this.signalGraphVolt);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(3, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(80, 153);
+            this.groupBox3.Size = new System.Drawing.Size(80, 74);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Display";
             // 
-            // signalGraphCE24
-            // 
-            this.signalGraphCE24.AutoSize = true;
-            this.signalGraphCE24.Location = new System.Drawing.Point(6, 145);
-            this.signalGraphCE24.Name = "signalGraphCE24";
-            this.signalGraphCE24.Size = new System.Drawing.Size(136, 22);
-            this.signalGraphCE24.TabIndex = 6;
-            this.signalGraphCE24.Text = "Tot. Energy 24hr";
-            this.signalGraphCE24.UseVisualStyleBackColor = true;
-            // 
-            // signalGraphCE1
-            // 
-            this.signalGraphCE1.AutoSize = true;
-            this.signalGraphCE1.Location = new System.Drawing.Point(6, 122);
-            this.signalGraphCE1.Name = "signalGraphCE1";
-            this.signalGraphCE1.Size = new System.Drawing.Size(128, 22);
-            this.signalGraphCE1.TabIndex = 5;
-            this.signalGraphCE1.Text = "Tot. Energy 1hr";
-            this.signalGraphCE1.UseVisualStyleBackColor = true;
-            // 
             // signalGraphPow
             // 
             this.signalGraphPow.AutoSize = true;
-            this.signalGraphPow.Location = new System.Drawing.Point(6, 99);
+            this.signalGraphPow.Location = new System.Drawing.Point(6, 86);
             this.signalGraphPow.Name = "signalGraphPow";
             this.signalGraphPow.Size = new System.Drawing.Size(70, 22);
             this.signalGraphPow.TabIndex = 4;
             this.signalGraphPow.Text = "Power";
             this.signalGraphPow.UseVisualStyleBackColor = true;
             // 
-            // signalGraphFreq
-            // 
-            this.signalGraphFreq.AutoSize = true;
-            this.signalGraphFreq.Location = new System.Drawing.Point(6, 76);
-            this.signalGraphFreq.Name = "signalGraphFreq";
-            this.signalGraphFreq.Size = new System.Drawing.Size(96, 22);
-            this.signalGraphFreq.TabIndex = 3;
-            this.signalGraphFreq.Text = "Frequency";
-            this.signalGraphFreq.UseVisualStyleBackColor = true;
-            // 
             // signalGraphCurr
             // 
             this.signalGraphCurr.AutoSize = true;
-            this.signalGraphCurr.Location = new System.Drawing.Point(6, 53);
+            this.signalGraphCurr.Location = new System.Drawing.Point(6, 58);
             this.signalGraphCurr.Name = "signalGraphCurr";
             this.signalGraphCurr.Size = new System.Drawing.Size(76, 22);
             this.signalGraphCurr.TabIndex = 1;
@@ -443,7 +435,7 @@ namespace OGLAD_UI
             this.gbxView.Location = new System.Drawing.Point(89, 3);
             this.gbxView.Name = "gbxView";
             this.tableLayoutPanel1.SetRowSpan(this.gbxView, 2);
-            this.gbxView.Size = new System.Drawing.Size(555, 312);
+            this.gbxView.Size = new System.Drawing.Size(555, 311);
             this.gbxView.TabIndex = 5;
             this.gbxView.TabStop = false;
             this.gbxView.Text = "View";
@@ -458,7 +450,7 @@ namespace OGLAD_UI
             this.plotGraph.Location = new System.Drawing.Point(6, 19);
             this.plotGraph.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.plotGraph.Name = "plotGraph";
-            this.plotGraph.Size = new System.Drawing.Size(546, 289);
+            this.plotGraph.Size = new System.Drawing.Size(546, 288);
             this.plotGraph.TabIndex = 0;
             // 
             // groupBox4
@@ -471,9 +463,9 @@ namespace OGLAD_UI
             this.groupBox4.Controls.Add(this.groupBox1);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.ForeColor = System.Drawing.Color.White;
-            this.groupBox4.Location = new System.Drawing.Point(3, 321);
+            this.groupBox4.Location = new System.Drawing.Point(3, 320);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(837, 122);
+            this.groupBox4.Size = new System.Drawing.Size(837, 123);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Controls";
@@ -572,7 +564,7 @@ namespace OGLAD_UI
             this.groupBox7.Location = new System.Drawing.Point(650, 3);
             this.groupBox7.Name = "groupBox7";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox7, 2);
-            this.groupBox7.Size = new System.Drawing.Size(190, 312);
+            this.groupBox7.Size = new System.Drawing.Size(190, 311);
             this.groupBox7.TabIndex = 18;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Stat Values";
@@ -606,7 +598,7 @@ namespace OGLAD_UI
             this.statMaxVal.AutoSize = true;
             this.statMaxVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
             this.statMaxVal.ForeColor = System.Drawing.Color.Black;
-            this.statMaxVal.Location = new System.Drawing.Point(110, 297);
+            this.statMaxVal.Location = new System.Drawing.Point(113, 297);
             this.statMaxVal.Name = "statMaxVal";
             this.statMaxVal.Size = new System.Drawing.Size(32, 18);
             this.statMaxVal.TabIndex = 10;
@@ -706,19 +698,41 @@ namespace OGLAD_UI
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.panel1.Controls.Add(this.statPFVal);
+            this.panel1.Controls.Add(this.statPF);
             this.panel1.Controls.Add(this.statLeadLagVal);
             this.panel1.Controls.Add(this.statLeadLag);
             this.panel1.Controls.Add(this.statMax);
             this.panel1.Location = new System.Drawing.Point(6, 19);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(178, 289);
+            this.panel1.Size = new System.Drawing.Size(178, 288);
             this.panel1.TabIndex = 13;
+            // 
+            // statPFVal
+            // 
+            this.statPFVal.AutoSize = true;
+            this.statPFVal.ForeColor = System.Drawing.Color.Black;
+            this.statPFVal.Location = new System.Drawing.Point(106, 399);
+            this.statPFVal.Name = "statPFVal";
+            this.statPFVal.Size = new System.Drawing.Size(32, 18);
+            this.statPFVal.TabIndex = 11;
+            this.statPFVal.Text = "N/A";
+            // 
+            // statPF
+            // 
+            this.statPF.AutoSize = true;
+            this.statPF.ForeColor = System.Drawing.Color.Black;
+            this.statPF.Location = new System.Drawing.Point(22, 399);
+            this.statPF.Name = "statPF";
+            this.statPF.Size = new System.Drawing.Size(31, 18);
+            this.statPF.TabIndex = 10;
+            this.statPF.Text = "PF:";
             // 
             // statLeadLagVal
             // 
             this.statLeadLagVal.AutoSize = true;
             this.statLeadLagVal.ForeColor = System.Drawing.Color.Black;
-            this.statLeadLagVal.Location = new System.Drawing.Point(112, 338);
+            this.statLeadLagVal.Location = new System.Drawing.Point(106, 338);
             this.statLeadLagVal.Name = "statLeadLagVal";
             this.statLeadLagVal.Size = new System.Drawing.Size(32, 18);
             this.statLeadLagVal.TabIndex = 9;
@@ -745,19 +759,59 @@ namespace OGLAD_UI
             this.statMax.TabIndex = 5;
             this.statMax.Text = "Max:";
             // 
-            // openInNewWindowToolStripMenuItem
+            // getStartedToolStripMenuItem
             // 
-            this.openInNewWindowToolStripMenuItem.Name = "openInNewWindowToolStripMenuItem";
-            this.openInNewWindowToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.openInNewWindowToolStripMenuItem.Text = "Open in New Window";
-            this.openInNewWindowToolStripMenuItem.Click += new System.EventHandler(this.openInNewWindowToolStripMenuItem_Click);
+            this.getStartedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importingAFileToolStripMenuItem,
+            this.interactingWithDataToolStripMenuItem,
+            this.fAQToolStripMenuItem,
+            this.usingHistogramControlsToolStripMenuItem,
+            this.formattingExternalDataFilesToolStripMenuItem});
+            this.getStartedToolStripMenuItem.Name = "getStartedToolStripMenuItem";
+            this.getStartedToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.getStartedToolStripMenuItem.Text = "LAGUI Guide";
             // 
-            // quickControlAssistToolStripMenuItem
+            // importingAFileToolStripMenuItem
             // 
-            this.quickControlAssistToolStripMenuItem.Name = "quickControlAssistToolStripMenuItem";
-            this.quickControlAssistToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.quickControlAssistToolStripMenuItem.Text = "Quick Control Assist";
-            this.quickControlAssistToolStripMenuItem.Click += new System.EventHandler(this.quickControlAssistToolStripMenuItem_Click);
+            this.importingAFileToolStripMenuItem.Name = "importingAFileToolStripMenuItem";
+            this.importingAFileToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.importingAFileToolStripMenuItem.Text = "Importing a File";
+            this.importingAFileToolStripMenuItem.Click += new System.EventHandler(this.importingAFileToolStripMenuItem_Click);
+            // 
+            // interactingWithDataToolStripMenuItem
+            // 
+            this.interactingWithDataToolStripMenuItem.Name = "interactingWithDataToolStripMenuItem";
+            this.interactingWithDataToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.interactingWithDataToolStripMenuItem.Text = "Interacting with Data";
+            this.interactingWithDataToolStripMenuItem.Click += new System.EventHandler(this.interactingWithDataToolStripMenuItem_Click);
+            // 
+            // formattingExternalDataFilesToolStripMenuItem
+            // 
+            this.formattingExternalDataFilesToolStripMenuItem.Name = "formattingExternalDataFilesToolStripMenuItem";
+            this.formattingExternalDataFilesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.formattingExternalDataFilesToolStripMenuItem.Text = "Formatting External Data Files";
+            this.formattingExternalDataFilesToolStripMenuItem.Click += new System.EventHandler(this.formattingExternalDataFilesToolStripMenuItem_Click);
+            // 
+            // usingHistogramControlsToolStripMenuItem
+            // 
+            this.usingHistogramControlsToolStripMenuItem.Name = "usingHistogramControlsToolStripMenuItem";
+            this.usingHistogramControlsToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.usingHistogramControlsToolStripMenuItem.Text = "Using Histogram Controls";
+            this.usingHistogramControlsToolStripMenuItem.Click += new System.EventHandler(this.usingHistogramControlsToolStripMenuItem_Click);
+            // 
+            // fAQToolStripMenuItem
+            // 
+            this.fAQToolStripMenuItem.Name = "fAQToolStripMenuItem";
+            this.fAQToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.fAQToolStripMenuItem.Text = "Exporting Data";
+            this.fAQToolStripMenuItem.Click += new System.EventHandler(this.fAQToolStripMenuItem_Click);
+            // 
+            // fAQToolStripMenuItem1
+            // 
+            this.fAQToolStripMenuItem1.Name = "fAQToolStripMenuItem1";
+            this.fAQToolStripMenuItem1.Size = new System.Drawing.Size(181, 22);
+            this.fAQToolStripMenuItem1.Text = "FAQ";
+            this.fAQToolStripMenuItem1.Click += new System.EventHandler(this.fAQToolStripMenuItem1_Click);
             // 
             // Form1
             // 
@@ -770,7 +824,7 @@ namespace OGLAD_UI
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "KWH Load Analyzer";
+            this.Text = "LAGUI 1.0.1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -802,7 +856,6 @@ namespace OGLAD_UI
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem getStartedToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.CheckBox histPlotTool;
@@ -812,7 +865,6 @@ namespace OGLAD_UI
         private System.Windows.Forms.CheckBox minMaxPlotTool;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.CheckBox signalGraphFreq;
         private System.Windows.Forms.CheckBox signalGraphCurr;
         private System.Windows.Forms.CheckBox signalGraphVolt;
         private System.Windows.Forms.GroupBox gbxView;
@@ -842,8 +894,6 @@ namespace OGLAD_UI
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label statLeadLagVal;
         private System.Windows.Forms.CheckBox leadLagPlotTool;
-        private System.Windows.Forms.CheckBox signalGraphCE1;
-        private System.Windows.Forms.CheckBox signalGraphCE24;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
@@ -852,6 +902,16 @@ namespace OGLAD_UI
         private System.Windows.Forms.ToolStripMenuItem exportStatValuesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openInNewWindowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quickControlAssistToolStripMenuItem;
+        private System.Windows.Forms.Label statPF;
+        private System.Windows.Forms.Label statPFVal;
+        private System.Windows.Forms.CheckBox PFPlotTool;
+        private System.Windows.Forms.ToolStripMenuItem getStartedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importingAFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem interactingWithDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fAQToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usingHistogramControlsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem formattingExternalDataFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fAQToolStripMenuItem1;
     }
 }
 
