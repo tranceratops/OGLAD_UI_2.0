@@ -824,7 +824,7 @@ namespace OGLAD_UI
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "LAGUI 1.0.1";
+            this.Text = "LAGUI 1.0.25";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox6.ResumeLayout(false);
