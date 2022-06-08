@@ -116,7 +116,7 @@
             this.ClientSize = new System.Drawing.Size(800, 511);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form3";
-            this.Text = "Form3";
+            this.Text = "LAGUI Guide - Interacting with Data";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();

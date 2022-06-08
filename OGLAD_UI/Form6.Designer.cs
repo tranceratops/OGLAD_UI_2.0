@@ -33,8 +33,8 @@
             this.Title = new System.Windows.Forms.TextBox();
             this.SectionTwoExplain = new System.Windows.Forms.TextBox();
             this.SectionTwo = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -97,15 +97,6 @@
             this.SectionTwo.TabStop = false;
             this.SectionTwo.Text = "Formatting External Data Files";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::OGLAD_UI.Properties.Resources.Capture2;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 146);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(663, 162);
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
-            // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Menu;
@@ -119,6 +110,15 @@
             this.textBox1.TabStop = false;
             this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::OGLAD_UI.Properties.Resources.Capture2;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 146);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(663, 162);
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form6
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -126,7 +126,7 @@
             this.ClientSize = new System.Drawing.Size(800, 511);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form6";
-            this.Text = "Form6";
+            this.Text = "LAGUI Guide - Formatting External Data Files";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
