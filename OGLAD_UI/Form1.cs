@@ -1,4 +1,10 @@
-﻿using System;
+﻿//Load Analyzer GUI (LAGUI)
+//Design and code done by Julian Saturno
+//ScottPlot is licensed under the MIT License
+//LAGUI
+//Copyright 2022 goes to Julian Saturno for LAGUI design and code
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,9 +28,8 @@ namespace OGLAD_UI
         List<double> currentArr = new List<double>();
         List<double> timeArr = new List<double>();
         List<double> pfArr = new List<double>();
-        List<double> freqArr = new List<double>();
-        //List<double> leadLagArr = new List<double>();
-        //List<double> apparentArr = new List<double>();
+        List<double> leadLagArr = new List<double>();
+        List<double> apparentArr = new List<double>();
         List<double> powerArr = new List<double>();
 
         List<double> ce1Arr = new List<double>();
@@ -34,9 +39,8 @@ namespace OGLAD_UI
         double[] voltageArrY;
         double[] currentArrY;
         double[] pfArrY;
-        double[] freqArrY;
-        //double[] leadLagArrY;
-        //double[] apparentArrY;
+        double[] leadLagArrY;
+        double[] apparentArrY;
         double[] powerArrY;
 
         double histBinSize;
@@ -46,9 +50,11 @@ namespace OGLAD_UI
         int countbotCE1 = 0;
         int countbotCE24 = 0;
 
-        int pf0count = 0;
-        int pf1count = 0;
+        int leadLag0Count = 0;
+        int leadLag1Count = 0;
         string leadlag;
+        string powerFactor;
+        string currGraph;
 
         int[] CE1IndexArr;
         int[] CE24IndexArr;
@@ -117,11 +123,10 @@ namespace OGLAD_UI
                                 histBarWidth = Convert.ToDouble(strBarWidth);
                                 (double[] counts, double[] binEdges) = ScottPlot.Statistics.Common.Histogram(valueArr, min: vArrYMin, max: vArrYMax, binSize: histBinSize);
                                 double[] leftEdges = binEdges.Take(binEdges.Length - 1).ToArray();
-                                //Array.Resize(ref binEdges, binEdges.Length - 1);
                                 var bar = plotGraph.Plot.AddBar(values: counts, positions: leftEdges);
                                 bar.BarWidth = histBarWidth;
                                 plotGraph.Plot.YAxis.Label("Count (#)");
-                                plotGraph.Plot.XAxis.Label("Voltage (V)");
+                                plotGraph.Plot.XAxis.Label(currGraph);
                                 plotGraph.Plot.SetAxisLimits(yMin: 0);
 
                                 double[] smoothEdges = ScottPlot.DataGen.Range(start: binEdges.First(), stop: binEdges.Last(), step: 0.1, includeStop: true);
@@ -174,8 +179,8 @@ namespace OGLAD_UI
             plotGraph.Plot.AddVerticalLine(stats.Mean - stats.StDev, Color.Black, 2, ScottPlot.LineStyle.Dash, "1 SD");
             plotGraph.Plot.AddVerticalLine(stats.Mean + stats.StDev, Color.Black, 2, ScottPlot.LineStyle.Dash);
             plotGraph.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
-            double dispSD1ValLower = Math.Round(stats.Mean - stats.StDev, 2);
-            double dispSD1ValUpper = Math.Round(stats.Mean + stats.StDev, 2);
+            double dispSD1ValLower = Math.Round(stats.Mean - stats.StDev, 1);
+            double dispSD1ValUpper = Math.Round(stats.Mean + stats.StDev, 1);
             statSD1LowerVal.Text = "L bound: " + dispSD1ValLower.ToString();
             statSD1LowerVal.Location = new System.Drawing.Point(73, 104);
             statSD1UpperVal.Text = "U bound: " + dispSD1ValUpper.ToString();
@@ -192,8 +197,8 @@ namespace OGLAD_UI
             plotGraph.Plot.AddVerticalLine(stats.Mean - stats.StDev * 2, Color.Black, 2, ScottPlot.LineStyle.Dot, "2 SD");
             plotGraph.Plot.AddVerticalLine(stats.Mean + stats.StDev * 2, Color.Black, 2, ScottPlot.LineStyle.Dot);
             plotGraph.Plot.Legend(location: ScottPlot.Alignment.UpperRight);
-            double dispSD2ValLower = Math.Round(stats.Mean - stats.StDev * 2, 2);
-            double dispSD2ValUpper = Math.Round(stats.Mean + stats.StDev * 2, 2);
+            double dispSD2ValLower = Math.Round(stats.Mean - stats.StDev * 2, 1);
+            double dispSD2ValUpper = Math.Round(stats.Mean + stats.StDev * 2, 1);
             statSD2LowerVal.Text = "L bound: " + dispSD2ValLower.ToString();
             statSD2LowerVal.Location = new System.Drawing.Point(73, 169);
             statSD2UpperVal.Text = "U bound: " + dispSD2ValUpper.ToString();
@@ -234,18 +239,18 @@ namespace OGLAD_UI
         }
         public void leadLagComp(double[] valueArr)
         {
-            foreach (double pfnum in valueArr)
+            foreach (double leadLagNum in valueArr)
             {
-                if (pfnum == 0)
+                if (leadLagNum == 0)
                 {
-                    pf0count++;
+                    leadLag0Count++;
                 }
-                else if (pfnum == 1)
+                else if (leadLagNum == 1)
                 {
-                    pf1count++;
+                    leadLag1Count++;
                 }
             }
-            if (pf0count > pf1count)
+            if (leadLag0Count > leadLag1Count)
             {
                 leadlag = "Leading";
             }
@@ -256,15 +261,41 @@ namespace OGLAD_UI
             statLeadLagVal.Text = leadlag;
             statLeadLagVal.Location = new System.Drawing.Point(102, 338);
         }
-        
+
+        public void pfComp(double[] valueArr)
+        {
+            double count = 0;
+            double sum = 0;
+            double pfavg;
+            foreach (double pfnum in valueArr)
+            {   
+                sum += pfnum;
+                count++;
+            }
+            pfavg = sum / count;
+            powerFactor = pfavg.ToString();
+            statPFVal.Text = Math.Round(pfavg, 2).ToString();
+            statPFVal.Location = new System.Drawing.Point(102, 399);
+        }
         public void writeToTxt(string fileName)
         {
             using (StreamWriter sw = new StreamWriter(fileName))
             {
-                string secondLine = currMean.ToString() + ", " + currSD1Low.ToString() + ", " + currSD1Up.ToString() + ", " + currSD2Low.ToString() + ", " + currSD2Up.ToString() + ", " + currMin.ToString() + ", " + currMax.ToString() + ", " + leadlag;
-                sw.WriteLine("Mean, SD1 Lower, SD1 Upper, SD 2 Lower, SD 2 Upper, Minimum, Maximum, Leading/Lagging");
+                string secondLine = currMean.ToString() + ", " + currSD1Low.ToString() + ", " + currSD1Up.ToString() + ", " + currSD2Low.ToString() + ", " + currSD2Up.ToString() + ", " + currMin.ToString() + ", " + currMax.ToString() + ", " + leadlag + ", " + powerFactor;
+                sw.WriteLine("Mean, SD1 Lower, SD1 Upper, SD 2 Lower, SD 2 Upper, Minimum, Maximum, Leading/Lagging, Power Factor");
                 sw.WriteLine(secondLine);
-
+                sw.WriteLine("----------------------------");
+                sw.WriteLine("Total Energy 1 Hr");
+                foreach(double hourNum in ce1Arr)
+                {
+                    sw.WriteLine(hourNum.ToString());
+                }
+                sw.WriteLine("----------------------------");
+                sw.WriteLine("Total Energy 24 Hr");
+                foreach(double longHourNum in ce24Arr)
+                {
+                    sw.WriteLine(longHourNum.ToString());
+                }
                 sw.Flush();
                 sw.Close();
             }
@@ -281,154 +312,121 @@ namespace OGLAD_UI
                 if (signalGraphVolt.Checked && !histPlotTool.Checked)
                 {   // converting voltage data array
                     // plotting on chart box
-                    plotGraph.Plot.YLabel("Voltage");
+                    currGraph = "Voltage (V)";
+                    plotGraph.Plot.YLabel(currGraph);
                     signalGraphing(timeArrX, voltageArrY);
                 }
                 if (signalGraphCurr.Checked && !histPlotTool.Checked)
                 {
                     // converting current data array
                     // plotting on chart box
-                    plotGraph.Plot.YLabel("Current");
+                    currGraph = "Current (A)";
+                    plotGraph.Plot.YLabel(currGraph);
                     signalGraphing(timeArrX, currentArrY);
-                }
-                if (signalGraphFreq.Checked && !histPlotTool.Checked)
-                {
-                    // converting frequency data array
-                    // plotting on chart box
-                    plotGraph.Plot.YLabel("Frequency");
                 }
                 if (signalGraphPow.Checked && !histPlotTool.Checked)
                 {
                     // converting power data array
                     // plotting on chart box
-                    plotGraph.Plot.YLabel("Power");
+                    currGraph = "Power (VA)";
+                    plotGraph.Plot.YLabel(currGraph);
                     signalGraphing(timeArrX, powerArrY);
                 }
-                if(signalGraphCE1.Checked && !histPlotTool.Checked)
-                {
-                    // converting cumulative energy data 1 hr array
-                    // plotting on chart box
-                    plotGraph.Plot.YLabel("Cumulative Energy 1 hour");
-                    CECalculation(powerArrY, CE1IndexArr, ce1Arr);
-                    //figure out x axis for CE graph
-
-                }
-                if (signalGraphCE24.Checked && !histPlotTool.Checked)
-                {
-                    // converting cumulative energy data 24 hr array
-                    // plotting on chart box
-                    plotGraph.Plot.YLabel("Cumulative Energy 24 hour");
-                    CECalculation(powerArrY, CE24IndexArr, ce24Arr);
-                    //figure out x axis for CE graph
-
-                }
-                if (histPlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (histPlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPow.Checked)
                 {
                     // creating histogram for voltage
                     // plotting on chart box
+                    currGraph = "Voltage (V)";
                     histogramGraph(voltageArrY);
                 }
-                if (meanPlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (meanPlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPow.Checked)
                 {
                     meanLine(voltageArrY);
                 }
-                if (SD1PlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (SD1PlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPow.Checked)
                 {
                     standDev1(voltageArrY);
                     
                 }
-                if (SD2PlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (SD2PlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPow.Checked)
                 {
                     standDev2(voltageArrY);
                 }
-                if (minMaxPlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (minMaxPlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPow.Checked)
                 {
                     minMaxLine(voltageArrY);
                 }
-                if (leadLagPlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (leadLagPlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPow.Checked)
                 {
-                    leadLagComp(pfArrY);
+                    leadLagComp(leadLagArrY);
                 }
-                if (histPlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (PFPlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPow.Checked)
+                {
+                    pfComp(pfArrY);
+                }
+                if (histPlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphPow.Checked)
                 {
                     // creating histogram for current
                     // plotting on chart box
+                    currGraph = "Current (A)";
                     histogramGraph(currentArrY);
                 }
-                if (meanPlotTool.Checked && signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (meanPlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphPow.Checked)
                 {
                     meanLine(currentArrY);
                 }
-                if (SD1PlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (SD1PlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphPow.Checked)
                 {
                     standDev1(currentArrY);
 
                 }
-                if (SD2PlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (SD2PlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphPow.Checked)
                 {
                     standDev2(currentArrY);
                 }
-                if (minMaxPlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (minMaxPlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphPow.Checked)
                 {
                     minMaxLine(currentArrY);
                 }
-                if (leadLagPlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (leadLagPlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphPow.Checked)
                 {
-                    leadLagComp(pfArrY);
+                    leadLagComp(leadLagArrY);
                 }
-                if (histPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (PFPlotTool.Checked && !signalGraphVolt.Checked && signalGraphCurr.Checked && !signalGraphPow.Checked)
                 {
-                    // creating histogram for frequency
-                    // plotting on chart box
-                    histogramGraph(freqArrY);
+                    pfComp(pfArrY);
                 }
-                if (meanPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
-                {
-                    meanLine(freqArrY);
-                }
-                if (SD1PlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
-                {
-                    standDev1(freqArrY);
-
-                }
-                if (SD2PlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
-                {
-                    standDev2(freqArrY);
-                }
-                if (minMaxPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
-                {
-                    minMaxLine(freqArrY);
-                }
-                if (leadLagPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphFreq.Checked && !signalGraphPow.Checked)
-                {
-                    leadLagComp(pfArrY);
-                }
-                if (histPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && signalGraphPow.Checked)
+                if (histPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphPow.Checked)
                 {
                     // creating histogram for power
                     // plotting on chart box
-                    histogramGraph(powerArrY);
+                    currGraph = "Power (VA)";
+                    histogramGraph(apparentArrY);
                 }
-                if (meanPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && signalGraphPow.Checked)
+                if (meanPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphPow.Checked)
                 {
-                    meanLine(powerArrY);
+                    meanLine(apparentArrY);
                 }
-                if (SD1PlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && signalGraphPow.Checked)
+                if (SD1PlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphPow.Checked)
                 {
-                    standDev1(powerArrY);
+                    standDev1(apparentArrY);
 
                 }
-                if (SD2PlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && signalGraphPow.Checked)
+                if (SD2PlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphPow.Checked)
                 {
-                    standDev2(powerArrY);
+                    standDev2(apparentArrY);
                 }
-                if (minMaxPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && signalGraphPow.Checked)
+                if (minMaxPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphPow.Checked)
                 {
-                    minMaxLine(powerArrY);
+                    minMaxLine(apparentArrY);
                 }
-                if (leadLagPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphFreq.Checked && !signalGraphPow.Checked)
+                if (leadLagPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphPow.Checked)
                 {
-                    leadLagComp(pfArrY);
+                    leadLagComp(leadLagArrY);
+                }
+                if (PFPlotTool.Checked && !signalGraphVolt.Checked && !signalGraphCurr.Checked && signalGraphPow.Checked)
+                {
+                    pfComp(pfArrY);
                 }
                 txtStatus.Text = "Plotting the " + graphType + " representation.";
                 
@@ -447,7 +445,6 @@ namespace OGLAD_UI
                 voltageArr.Clear();
                 currentArr.Clear();
                 pfArr.Clear();
-                freqArr.Clear();
                 timeArr.Clear();
                 ce1Arr.Clear();
                 ce24Arr.Clear();
@@ -466,6 +463,7 @@ namespace OGLAD_UI
                 statMinVal.Text = "N/A";
                 statMaxVal.Text = "N/A";
                 statLeadLagVal.Text = "N/A";
+                statPFVal.Text = "N/A";
                 statLeadLagVal.Location = new System.Drawing.Point(111, 338);
                 statSD1LowerVal.Location = new System.Drawing.Point(111, 104);
                 statSD2LowerVal.Location = new System.Drawing.Point(111, 169);
@@ -516,19 +514,17 @@ namespace OGLAD_UI
                     voltageArr.Add(Convert.ToDouble(tmp[1]));
                     currentArr.Add(Convert.ToDouble(tmp[2]));
                     pfArr.Add(Convert.ToDouble(tmp[3]));
-                    freqArr.Add(Convert.ToDouble(tmp[4]));
-                    //leadLagArr.Add(Convert.ToDouble(tmp[4]));
-                    //apparentArr.Add(Convert.ToDouble(tmp[5]));
-                    powerArr.Add(Convert.ToDouble(tmp[5]));
+                    leadLagArr.Add(Convert.ToDouble(tmp[4]));
+                    apparentArr.Add(Convert.ToDouble(tmp[5]));
+                    powerArr.Add(Convert.ToDouble(tmp[6]));
                     counter++;
                 }
                 timeArrX = dateTimeArr.Select(x => x.ToOADate()).ToArray();
                 voltageArrY = voltageArr.ToArray();
                 currentArrY = currentArr.ToArray();
                 pfArrY = pfArr.ToArray();
-                freqArrY = freqArr.ToArray();
-                //leadLagArrY = leadLagArr.ToArray();
-                //apparentArrY = apparentArr.ToArray();
+                leadLagArrY = leadLagArr.ToArray();
+                apparentArrY = apparentArr.ToArray();
                 powerArrY = powerArr.ToArray();
                 txtStatus.Text = "Data is loaded and ready to plot."; //status update for completion
             }
@@ -536,15 +532,6 @@ namespace OGLAD_UI
             {
                 MessageBox.Show("Error in loading file.");
             }
-        }
-
-        private void getStartedToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Create a new instance of the Form2 class
-            GettingStarted controls = new GettingStarted();
-
-            // Show the settings form
-            controls.Show();
         }
 
         private void exportStatValuesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -599,6 +586,60 @@ namespace OGLAD_UI
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void importingAFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Create a new instance of the Form2 class
+            GettingStarted controls = new GettingStarted();
+
+            // Show the settings form
+            controls.Show();
+        }
+
+        private void interactingWithDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Create a new instance of the Form2 class
+            Form3 controls = new Form3();
+
+            // Show the settings form
+            controls.Show();
+        }
+
+        private void fAQToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Create a new instance of the Form2 class
+            Form4 controls = new Form4();
+
+            // Show the settings form
+            controls.Show();
+        }
+
+        private void usingHistogramControlsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Create a new instance of the Form2 class
+            Form5 controls = new Form5();
+
+            // Show the settings form
+            controls.Show();
+        }
+
+        private void formattingExternalDataFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Create a new instance of the Form2 class
+            Form6 controls = new Form6();
+
+            // Show the settings form
+            controls.Show();
+        }
+
+        private void fAQToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            // Create a new instance of the Form2 class
+            Form7 controls = new Form7();
+
+            // Show the settings form
+            controls.Show();
         }
     }
 }
