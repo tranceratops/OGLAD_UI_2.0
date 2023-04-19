@@ -16,6 +16,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using System.Globalization;
+using System.Xml.Serialization;
+using System.Xml;
+using Newtonsoft.Json;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using Microsoft.VisualBasic.ApplicationServices;
+using ScottPlot.Drawing.Colormaps;
+using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms.DataVisualization.Charting;
+using System.Text.RegularExpressions;
+using System.Security.Permissions;
 
 namespace OGLAD_UI
 {
@@ -32,6 +42,8 @@ namespace OGLAD_UI
         List<double> apparentArr = new List<double>();
         List<double> powerArr = new List<double>();
 
+        List<DeviceData> deviceDataList = new List<DeviceData>();
+
         List<double> ce1Arr = new List<double>();
         List<double> ce24Arr = new List<double>();
 
@@ -42,6 +54,13 @@ namespace OGLAD_UI
         double[] leadLagArrY;
         double[] apparentArrY;
         double[] powerArrY;
+        double totAvgAppPower;
+        double totAvgActPower;
+        //double OnAvgAppPower;
+        //double OnAvgActPower;
+        //double OffAvgActPower;
+        //double OffAvgAppPower;
+
 
         double histBinSize;
         double histBarWidth;
@@ -170,7 +189,7 @@ namespace OGLAD_UI
             statMeanVal.Text = dispMeanVal.ToString();
             plotGraph.Refresh();
         }
- 
+
         public void standDev1(double[] valueArr)
         {
             var stats = new ScottPlot.Statistics.BasicStats(valueArr);
@@ -221,14 +240,14 @@ namespace OGLAD_UI
             statMaxVal.Text = dispMax.ToString();
             plotGraph.Refresh();
         }
-
+        /*
         public void CECalculation(double[] valueArr, int[] indexArr, List<double> cumEnergy)
         {
             double currTotal = 0;
             int start = 0;
-            foreach(int i in indexArr)
+            foreach (int i in indexArr)
             {
-                for(int j = start; j<i+1; j++)
+                for (int j = start; j < i + 1; j++)
                 {
                     currTotal += valueArr[j];
                 }
@@ -237,6 +256,81 @@ namespace OGLAD_UI
                 start = i + 1;
             }
         }
+        */
+
+        //public double AvgPower(double[] valueArr1)
+        //{
+        //    double sum = 0;
+        //    for (int i = 0; i < valueArr1.Length; i++)
+        //    {
+        //        sum += valueArr1[i];
+        //    }
+        //    double avgPower = sum / valueArr1.Length;
+        //    return avgPower;
+        //}
+
+        public double avgPower(double[] valueArr)
+        {
+            double count = 0;
+            double sum = 0;
+            double pavg;
+
+            foreach (double pnum in valueArr)
+            {
+                sum += pnum;
+                count++;
+            }
+            pavg = sum / count; // check for zero count
+            //return pavg;
+            return Math.Round(pavg, 2); // round to 5 decimal place
+        }
+
+        public double offAVG(double[] valueArr1)
+        {
+
+            double avg = avgPower(valueArr1);
+            double sumOff = 0;
+            double avgOFF = 0;
+
+
+            for (int j = 0; j < valueArr1.Length; j++)
+            {
+                if (valueArr1[j] < avg)
+                {
+                    sumOff += valueArr1[j];
+                }
+            }
+            return avgOFF = sumOff / valueArr1.Length;
+        }
+
+        public double onAVG(double[] valueArr1)
+        {
+            double avg = avgPower(valueArr1);
+            double sumOn = 0;
+            double avgON = 0;
+
+
+            for (int j = 0; j < valueArr1.Length; j++)
+            {
+                if (valueArr1[j] < avg)
+                {
+                    sumOn += valueArr1[j];
+                }
+            }
+            return avgON = sumOn / valueArr1.Length;
+        }
+
+        public double getAvgAppPower()
+        {
+            return this.totAvgAppPower;
+        }
+
+        public double getAvgActPower()
+        {
+            return this.totAvgActPower;
+        }
+
+
         public void leadLagComp(double[] valueArr)
         {
             foreach (double leadLagNum in valueArr)
@@ -268,7 +362,7 @@ namespace OGLAD_UI
             double sum = 0;
             double pfavg;
             foreach (double pfnum in valueArr)
-            {   
+            {
                 sum += pfnum;
                 count++;
             }
@@ -286,13 +380,13 @@ namespace OGLAD_UI
                 sw.WriteLine(secondLine);
                 sw.WriteLine("----------------------------");
                 sw.WriteLine("Total Energy 1 Hr");
-                foreach(double hourNum in ce1Arr)
+                foreach (double hourNum in ce1Arr)
                 {
                     sw.WriteLine(hourNum.ToString());
                 }
                 sw.WriteLine("----------------------------");
                 sw.WriteLine("Total Energy 24 Hr");
-                foreach(double longHourNum in ce24Arr)
+                foreach (double longHourNum in ce24Arr)
                 {
                     sw.WriteLine(longHourNum.ToString());
                 }
@@ -346,7 +440,7 @@ namespace OGLAD_UI
                 if (SD1PlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPow.Checked)
                 {
                     standDev1(voltageArrY);
-                    
+
                 }
                 if (SD2PlotTool.Checked && signalGraphVolt.Checked && !signalGraphCurr.Checked && !signalGraphPow.Checked)
                 {
@@ -429,7 +523,7 @@ namespace OGLAD_UI
                     pfComp(pfArrY);
                 }
                 txtStatus.Text = "Plotting the " + graphType + " representation.";
-                
+
             }
             else
             {
@@ -480,7 +574,7 @@ namespace OGLAD_UI
 
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
             //parse signal data
             try
             {
@@ -490,7 +584,7 @@ namespace OGLAD_UI
                 string[] line = readfile.Split('\n');
                 line = line.Skip(1).ToArray();            //skip header line of CSV
 
-                string [] tmp;
+                string[] tmp;
                 foreach (string s1 in readfile.Split('\n'))
                 {
                     tmp = s1.Split(',');                  //create array for each row
@@ -526,6 +620,9 @@ namespace OGLAD_UI
                 leadLagArrY = leadLagArr.ToArray();
                 apparentArrY = apparentArr.ToArray();
                 powerArrY = powerArr.ToArray();
+                //var mean1 = new ScottPlot.Statistics.BasicStats(powerArrY);
+                totAvgAppPower = avgPower(apparentArrY);//mean1;
+                totAvgActPower = avgPower(powerArrY);
                 txtStatus.Text = "Data is loaded and ready to plot."; //status update for completion
             }
             catch (Exception)
@@ -533,7 +630,10 @@ namespace OGLAD_UI
                 MessageBox.Show("Error in loading file.");
             }
         }
-
+        private void PeakLoad(double[] valueArray1, double[] valueArray2)
+        {
+            //for (int = 0, i <= )
+        }
         private void exportStatValuesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
@@ -641,5 +741,389 @@ namespace OGLAD_UI
             // Show the settings form
             controls.Show();
         }
+
+        private void gridDesignToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GRIDLoad controls = new GRIDLoad();
+            controls.Show();
+        }
+
+        private void libraryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Library controls = new Library(deviceDataList);
+            controls.Show();
+        }
+
+        // User has ability to save a device's data without needing to graph it
+        public void saveDeviceDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "CSV files (*.csv)|*.csv";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openFileDialog.FileName;
+                string path = Path.Combine(Directory.GetParent(Directory.GetParent(Application.StartupPath).FullName).FullName, "Resources", "deviceLibrary.csv");
+
+                try
+                {
+                    if (!File.Exists(path))
+                    {
+                        using (StreamWriter writer = new StreamWriter(path))
+                        {
+                            writer.WriteLine("DeviceName,DeviceType,avgAppPower,avgActPower,onTime,offTime,onAppPower,onActPower,offAppPower,offActPower");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while saving the data. Error message: " + ex.Message);
+                }
+
+                string saveFilePath = path;
+
+                // Get user input for device name and type
+                string deviceName = "";
+                bool deviceExists = false;
+                Regex regex = new Regex("^[a-zA-Z0-9_]+$");
+
+                do
+                {
+                    Form prompt = new Form();
+                    prompt.StartPosition = FormStartPosition.CenterScreen;
+                    prompt.Width = 380;
+                    prompt.Height = 150;
+                    prompt.Text = "Device Name";
+
+                    Label deviceNameLabel = new Label() { Left = 50, Top = 20, Width = 150, Text = "Enter the device name:" };
+                    TextBox deviceNameTextBox = new TextBox() { Left = 50, Top = 50, Width = 200 };
+
+                    Button confirmButton = new Button() { Text = "OK", Left = 270, Width = 70, Top = 20 };
+                    Button cancelButton = new Button() { Text = "Cancel", Left = 270, Width = 70, Top = 50 };
+                    prompt.Controls.Add(deviceNameLabel);
+                    prompt.Controls.Add(deviceNameTextBox);
+                    prompt.Controls.Add(confirmButton);
+                    prompt.Controls.Add(cancelButton);
+
+                    confirmButton.Click += (s, args) =>
+                    {
+                        if (!regex.IsMatch(deviceNameTextBox.Text))
+                        {
+                            MessageBox.Show("Please enter a valid device name (letters, numbers, and underscores only).");
+                        }
+                        else
+                        {
+                            deviceName = deviceNameTextBox.Text;
+
+                            using (var reader = new StreamReader(saveFilePath))
+                            {
+                                deviceExists = false;
+                                while (!reader.EndOfStream)
+                                {
+                                    var line = reader.ReadLine();
+                                    var values = line.Split(',');
+                                    if (values[0] == deviceName)
+                                    {
+                                        deviceExists = true;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (deviceExists)
+                            {
+                                MessageBox.Show("A device with the same name already exists in the device library. Please enter a unique device name.");
+                            }
+                            else if (deviceName == "" || deviceName == " ")
+                            {
+                                MessageBox.Show("Please enter a valid device name.");
+                            }
+                            else
+                            {
+                                prompt.Close();
+                            }
+                        }
+                    };
+
+                    cancelButton.Click += (s, args) =>
+                    {
+                        prompt.Close();
+                    };
+
+                    if (prompt.ShowDialog() == DialogResult.Cancel)
+                    {
+                        break;
+                    }
+
+                    else
+                    {
+                        break;
+                    }
+                }
+                while (deviceExists || deviceName == "");
+
+                string[] deviceTypes = { "Continuous", "Non-continuous" };
+                string deviceType = "";
+                double avgAppPower;
+                double avgActPower;
+                double onTime = 0.0;
+                double offTime = 0.0;
+                double onAppPower;
+                double onActPower;
+                double offActPower;
+                double offAppPower;
+
+                try
+                {
+                    string readfile = File.ReadAllText(filePath);   //read in CSV file
+                    string[] line = readfile.Split('\n');
+                    line = line.Skip(1).ToArray();            //skip header line of CSV
+
+                    string[] tmp;
+                    foreach (string s1 in readfile.Split('\n'))
+                    {
+                        tmp = s1.Split(',');                  //create array for each row
+                        if (tmp[0] == "")                     //null case for when CSV is fully read in
+                            break;
+                        if (!tmp[0].Any(x => !char.IsLetter(x)))
+                            continue;
+
+                        apparentArr.Add(Convert.ToDouble(tmp[5]));
+                        powerArr.Add(Convert.ToDouble(tmp[6]));
+                        counter++;
+                    }
+                    apparentArrY = apparentArr.ToArray();
+                    powerArrY = powerArr.ToArray();
+                }
+
+                catch (Exception)
+                {
+                    MessageBox.Show("Error in loading file.");
+                }
+
+                if (string.IsNullOrEmpty(deviceName))
+                {
+                    return;
+                }
+
+                else
+                {
+                    DialogResult result = MessageBox.Show("Is the device continuous?", "Device Type", MessageBoxButtons.YesNo);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        deviceType = "Continuous";
+                        avgAppPower = avgPower(apparentArrY);
+                        avgActPower = avgPower(powerArrY);
+
+                        DeviceData deviceData = new DeviceData();
+                        deviceData.DeviceName = deviceName;
+                        deviceData.DeviceType = deviceType;
+                        deviceData.avgAppPower = avgAppPower;
+                        deviceData.avgActPower = avgActPower;
+                        deviceDataList.Add(deviceData);
+
+                        //Save device data to CSV file
+                        using (StreamWriter sw = new StreamWriter(saveFilePath, true))
+                        {
+                            sw.WriteLine($"{deviceName},{deviceType},{avgAppPower},{avgActPower},null,null,null,null,null,null");
+                        }
+
+                        MessageBox.Show("The device has been saved!");
+                    }
+
+                    else if (result == DialogResult.No)
+                    {
+                        deviceType = "Non-continuous";
+
+                        bool validInput = false;
+                        while (!validInput)
+                        {
+                            // Show dialog box to get onTime and offTime
+                            Form prompt = new Form();
+                            prompt.StartPosition = FormStartPosition.CenterScreen;
+                            prompt.Width = 350;
+                            prompt.Height = 490;
+                            prompt.Text = "Enter Device Data";
+
+                            Label onLabel = new Label() { Left = 50, Top = 20, Width = 250, Text = "On Time (in seconds):" };
+                            TextBox onTextBox = new TextBox() { Left = 50, Top = 50, Width = 200 };
+
+                            Label offLabel = new Label() { Left = 50, Top = 80, Width = 250, Text = "Off Time (in seconds):" };
+                            TextBox offTextBox = new TextBox() { Left = 50, Top = 110, Width = 200 };
+
+                            Label onAppPowerLabel = new Label() { Left = 50, Top = 140, Width = 250, Text = "On Average Apparent Power:" };
+                            TextBox onAppPowerTextBox = new TextBox() { Left = 50, Top = 170, Width = 200 };
+                            //OnAvgAppPower = onAVG(apparentArrY);
+
+
+                            Label onActPowerLabel = new Label() { Left = 50, Top = 200, Width = 250, Text = "On Average Active Power:" };
+                            TextBox onActPowerTextBox = new TextBox() { Left = 50, Top = 230, Width = 200 };
+
+                            //OnAvgActPower = onAVG(powerArrY);
+
+                            Label offAppPowerLabel = new Label() { Left = 50, Top = 260, Width = 250, Text = "Off Average Apparent Power:" };
+                            TextBox offAppPowerTextBox = new TextBox() { Left = 50, Top = 290, Width = 200 };
+
+                            //OffAvgAppPower = offAVG(apparentArrY);
+
+                            Label offActPowerLabel = new Label() { Left = 50, Top = 320, Width = 250, Text = "Off Average Active Power:" };
+                            TextBox offActPowerTextBox = new TextBox() { Left = 50, Top = 350, Width = 200 };
+
+                            //OffAvgActPower = offAVG(powerArrY);
+
+                            Button confirmButton = new Button() { Text = "OK", Left = 70, Width = 70, Top = 410 };
+                            Button cancelButton = new Button() { Text = "Cancel", Left = 150, Width = 70, Top = 410 };
+
+                            confirmButton.Click += (s, args) =>
+                            {
+                                //Set onTime and offTime based on user input
+
+
+                                if (!Double.TryParse(onTextBox.Text, out onTime))
+                                {
+                                    MessageBox.Show("Invalid input for On Time.");
+                                    return;
+                                }
+
+                                else if (!Double.TryParse(offTextBox.Text, out offTime))
+                                {
+                                    MessageBox.Show("Invalid input for Off Time.");
+                                    return;
+                                }
+
+                                else if (!Double.TryParse(onAppPowerTextBox.Text, out onAppPower))
+                                {
+                                    MessageBox.Show("Invalid input for On Average Apparent Power.");
+                                    return;
+                                }
+
+                                else if (!Double.TryParse(onActPowerTextBox.Text, out onActPower))
+                                {
+                                    MessageBox.Show("Invalid input for On Average Active Power");
+                                    return;
+                                }
+
+                                else if (!Double.TryParse(offAppPowerTextBox.Text, out offAppPower))
+                                {
+                                    MessageBox.Show("Invalid input for Off Average Apparent Power");
+                                    return;
+                                }
+
+                                else if (!Double.TryParse(offActPowerTextBox.Text, out offActPower))
+                                {
+                                    MessageBox.Show("Invalid input for Off Average Active Power");
+                                    return;
+                                }
+
+                                validInput = true;
+
+
+                                MessageBox.Show("The device has been saved!");
+                                prompt.Close();
+
+                                DeviceData deviceData = new DeviceData();
+                                deviceData.DeviceName = deviceName;
+                                deviceData.DeviceType = deviceType;
+                                deviceData.onTime = onTime; // set on-time for non-continuous device
+                                deviceData.offTime = offTime; // set off-time for non-continuous device
+                                deviceData.onAppPower = onAppPower;
+                                deviceData.onActPower = onActPower;
+                                deviceData.offAppPower = offAppPower;
+                                deviceData.offActPower = offActPower;
+                                deviceDataList.Add(deviceData);
+
+                                //Save device data to CSV file
+
+                                using (StreamWriter sw = new StreamWriter(saveFilePath, true))
+                                {
+                                    sw.WriteLine($"{deviceName},{deviceType},null,null,{onTime},{offTime},{onAppPower},{onActPower},{offAppPower},{offActPower}");
+                                }
+                            };
+
+                            cancelButton.Click += (s, args) =>
+                            {
+                                prompt.DialogResult = DialogResult.Cancel;
+                                prompt.Close();
+                            };
+
+                            prompt.Controls.Add(onLabel);
+                            prompt.Controls.Add(onTextBox);
+
+                            prompt.Controls.Add(offLabel);
+                            prompt.Controls.Add(offTextBox);
+
+                            prompt.Controls.Add(onAppPowerLabel);
+                            prompt.Controls.Add(onAppPowerTextBox);
+
+                            prompt.Controls.Add(onActPowerLabel);
+                            prompt.Controls.Add(onActPowerTextBox);
+
+                            prompt.Controls.Add(offAppPowerLabel);
+                            prompt.Controls.Add(offAppPowerTextBox);
+
+                            prompt.Controls.Add(offActPowerLabel);
+                            prompt.Controls.Add(offActPowerTextBox);
+
+                            prompt.Controls.Add(confirmButton);
+                            prompt.Controls.Add(cancelButton);
+
+                            DialogResult dialogResult = prompt.ShowDialog();
+
+                            if (dialogResult == DialogResult.Cancel)
+                            {
+                                return;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //user clicked the close button or pressed Esc
+                        return;
+                    }
+                }                 
+            }
+        }
+
+        public void ConfirmButton_Click(object sender, EventArgs e)
+        {
+            Form prompt = (Form)sender;
+            prompt.Close();
+        }
+
+        public void CancelButton_Click(object sender, EventArgs e)
+        {
+            Form prompt = (Form)((Button)sender).Parent;
+            prompt.DialogResult = DialogResult.Cancel;
+            prompt.Close();
+        }
+
+        //private void saveLibraryToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    SaveFileDialog saveFileDialog = new SaveFileDialog();
+        //    saveFileDialog.Filter = "XML files (*.xml)|*.xml|JSON files (*.json)|*.json";
+
+        //    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+        //    {
+        //        string filePath = saveFileDialog.FileName;
+
+        //        // serialize data to file
+        //        if (Path.GetExtension(filePath) == ".xml")
+        //        {
+        //            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<DeviceData>));
+        //            using (StreamWriter streamWriter = new StreamWriter(filePath))
+        //            {
+        //                xmlSerializer.Serialize(streamWriter, deviceDataList);
+        //            }
+        //        }
+        //        else if (Path.GetExtension(filePath) == ".json")
+        //        {
+        //            JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings();
+        //            jsonSerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+        //            string json = JsonConvert.SerializeObject(deviceDataList, jsonSerializerSettings);
+        //            File.WriteAllText(filePath, json);
+        //        }
+        //    }
+        //}
     }
 }

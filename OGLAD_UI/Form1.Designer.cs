@@ -35,6 +35,7 @@ namespace OGLAD_UI
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveDeviceAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,7 +46,16 @@ namespace OGLAD_UI
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportStatValuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getStartedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importingAFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.interactingWithDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usingHistogramControlsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formattingExternalDataFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quickControlAssistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fAQToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridDesignToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.libraryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.PFPlotTool = new System.Windows.Forms.CheckBox();
             this.leadLagPlotTool = new System.Windows.Forms.CheckBox();
@@ -87,13 +97,6 @@ namespace OGLAD_UI
             this.statLeadLagVal = new System.Windows.Forms.Label();
             this.statLeadLag = new System.Windows.Forms.Label();
             this.statMax = new System.Windows.Forms.Label();
-            this.getStartedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importingAFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.interactingWithDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.formattingExternalDataFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usingHistogramControlsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fAQToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -118,7 +121,9 @@ namespace OGLAD_UI
             this.editToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.toolsToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.helpToolStripMenuItem,
+            this.gridDesignToolStripMenuItem,
+            this.libraryToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(879, 24);
@@ -130,6 +135,7 @@ namespace OGLAD_UI
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
             this.openFileToolStripMenuItem,
+            this.saveDeviceAsToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -139,28 +145,35 @@ namespace OGLAD_UI
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openFileToolStripMenuItem
             // 
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openFileToolStripMenuItem.Text = "Open File";
             this.openFileToolStripMenuItem.Click += new System.EventHandler(this.openFileToolStripMenuItem_Click);
+            // 
+            // saveDeviceAsToolStripMenuItem
+            // 
+            this.saveDeviceAsToolStripMenuItem.Name = "saveDeviceAsToolStripMenuItem";
+            this.saveDeviceAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveDeviceAsToolStripMenuItem.Text = "Save Device As";
+            this.saveDeviceAsToolStripMenuItem.Click += new System.EventHandler(this.saveDeviceDataToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.saveToolStripMenuItem.Text = "Save Plot";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Text = "Save Plot As";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -213,7 +226,7 @@ namespace OGLAD_UI
             // exportStatValuesToolStripMenuItem
             // 
             this.exportStatValuesToolStripMenuItem.Name = "exportStatValuesToolStripMenuItem";
-            this.exportStatValuesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportStatValuesToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.exportStatValuesToolStripMenuItem.Text = "Export Stat Values";
             this.exportStatValuesToolStripMenuItem.Click += new System.EventHandler(this.exportStatValuesToolStripMenuItem_Click);
             // 
@@ -227,12 +240,80 @@ namespace OGLAD_UI
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
+            // getStartedToolStripMenuItem
+            // 
+            this.getStartedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importingAFileToolStripMenuItem,
+            this.interactingWithDataToolStripMenuItem,
+            this.fAQToolStripMenuItem,
+            this.usingHistogramControlsToolStripMenuItem,
+            this.formattingExternalDataFilesToolStripMenuItem});
+            this.getStartedToolStripMenuItem.Name = "getStartedToolStripMenuItem";
+            this.getStartedToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.getStartedToolStripMenuItem.Text = "LAGUI Guide";
+            // 
+            // importingAFileToolStripMenuItem
+            // 
+            this.importingAFileToolStripMenuItem.Name = "importingAFileToolStripMenuItem";
+            this.importingAFileToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.importingAFileToolStripMenuItem.Text = "Importing a File";
+            this.importingAFileToolStripMenuItem.Click += new System.EventHandler(this.importingAFileToolStripMenuItem_Click);
+            // 
+            // interactingWithDataToolStripMenuItem
+            // 
+            this.interactingWithDataToolStripMenuItem.Name = "interactingWithDataToolStripMenuItem";
+            this.interactingWithDataToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.interactingWithDataToolStripMenuItem.Text = "Interacting with Data";
+            this.interactingWithDataToolStripMenuItem.Click += new System.EventHandler(this.interactingWithDataToolStripMenuItem_Click);
+            // 
+            // fAQToolStripMenuItem
+            // 
+            this.fAQToolStripMenuItem.Name = "fAQToolStripMenuItem";
+            this.fAQToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.fAQToolStripMenuItem.Text = "Exporting Data";
+            this.fAQToolStripMenuItem.Click += new System.EventHandler(this.fAQToolStripMenuItem_Click);
+            // 
+            // usingHistogramControlsToolStripMenuItem
+            // 
+            this.usingHistogramControlsToolStripMenuItem.Name = "usingHistogramControlsToolStripMenuItem";
+            this.usingHistogramControlsToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.usingHistogramControlsToolStripMenuItem.Text = "Using Histogram Controls";
+            this.usingHistogramControlsToolStripMenuItem.Click += new System.EventHandler(this.usingHistogramControlsToolStripMenuItem_Click);
+            // 
+            // formattingExternalDataFilesToolStripMenuItem
+            // 
+            this.formattingExternalDataFilesToolStripMenuItem.Name = "formattingExternalDataFilesToolStripMenuItem";
+            this.formattingExternalDataFilesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.formattingExternalDataFilesToolStripMenuItem.Text = "Formatting External Data Files";
+            this.formattingExternalDataFilesToolStripMenuItem.Click += new System.EventHandler(this.formattingExternalDataFilesToolStripMenuItem_Click);
+            // 
             // quickControlAssistToolStripMenuItem
             // 
             this.quickControlAssistToolStripMenuItem.Name = "quickControlAssistToolStripMenuItem";
             this.quickControlAssistToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.quickControlAssistToolStripMenuItem.Text = "Quick Control Assist";
             this.quickControlAssistToolStripMenuItem.Click += new System.EventHandler(this.quickControlAssistToolStripMenuItem_Click);
+            // 
+            // fAQToolStripMenuItem1
+            // 
+            this.fAQToolStripMenuItem1.Name = "fAQToolStripMenuItem1";
+            this.fAQToolStripMenuItem1.Size = new System.Drawing.Size(181, 22);
+            this.fAQToolStripMenuItem1.Text = "FAQ";
+            this.fAQToolStripMenuItem1.Click += new System.EventHandler(this.fAQToolStripMenuItem1_Click);
+            // 
+            // gridDesignToolStripMenuItem
+            // 
+            this.gridDesignToolStripMenuItem.Name = "gridDesignToolStripMenuItem";
+            this.gridDesignToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
+            this.gridDesignToolStripMenuItem.Text = "Grid Load";
+            this.gridDesignToolStripMenuItem.Click += new System.EventHandler(this.gridDesignToolStripMenuItem_Click);
+            // 
+            // libraryToolStripMenuItem
+            // 
+            this.libraryToolStripMenuItem.Name = "libraryToolStripMenuItem";
+            this.libraryToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.libraryToolStripMenuItem.Text = "Library";
+            this.libraryToolStripMenuItem.Click += new System.EventHandler(this.libraryToolStripMenuItem_Click);
             // 
             // groupBox6
             // 
@@ -361,7 +442,7 @@ namespace OGLAD_UI
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.29212F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 86.70789F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 195F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 196F));
             this.tableLayoutPanel1.Controls.Add(this.groupBox3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.gbxView, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox4, 0, 2);
@@ -445,7 +526,7 @@ namespace OGLAD_UI
             this.plotGraph.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.plotGraph.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.plotGraph.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(173)))), ((int)(((byte)(153)))));
             this.plotGraph.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.plotGraph.Location = new System.Drawing.Point(6, 19);
             this.plotGraph.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -488,7 +569,7 @@ namespace OGLAD_UI
             // 
             this.txtStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.txtStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(173)))), ((int)(((byte)(153)))));
             this.txtStatus.Location = new System.Drawing.Point(62, 32);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.Size = new System.Drawing.Size(588, 24);
@@ -518,9 +599,9 @@ namespace OGLAD_UI
             // 
             // btnStop
             // 
-            this.btnStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(135)))), ((int)(((byte)(198)))));
+            this.btnStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(88)))), ((int)(((byte)(103)))));
             this.btnStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStop.ForeColor = System.Drawing.Color.Black;
+            this.btnStop.ForeColor = System.Drawing.Color.White;
             this.btnStop.Location = new System.Drawing.Point(43, 56);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
@@ -531,9 +612,9 @@ namespace OGLAD_UI
             // 
             // btnStart
             // 
-            this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(135)))), ((int)(((byte)(198)))));
+            this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(88)))), ((int)(((byte)(103)))));
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.ForeColor = System.Drawing.Color.Black;
+            this.btnStart.ForeColor = System.Drawing.Color.White;
             this.btnStart.Location = new System.Drawing.Point(43, 27);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
@@ -572,7 +653,7 @@ namespace OGLAD_UI
             // statSD2UpperVal
             // 
             this.statSD2UpperVal.AutoSize = true;
-            this.statSD2UpperVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.statSD2UpperVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(173)))), ((int)(((byte)(153)))));
             this.statSD2UpperVal.ForeColor = System.Drawing.Color.Black;
             this.statSD2UpperVal.Location = new System.Drawing.Point(111, 189);
             this.statSD2UpperVal.Name = "statSD2UpperVal";
@@ -584,7 +665,7 @@ namespace OGLAD_UI
             // statSD1UpperVal
             // 
             this.statSD1UpperVal.AutoSize = true;
-            this.statSD1UpperVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.statSD1UpperVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(173)))), ((int)(((byte)(153)))));
             this.statSD1UpperVal.ForeColor = System.Drawing.Color.Black;
             this.statSD1UpperVal.Location = new System.Drawing.Point(111, 124);
             this.statSD1UpperVal.Name = "statSD1UpperVal";
@@ -596,7 +677,7 @@ namespace OGLAD_UI
             // statMaxVal
             // 
             this.statMaxVal.AutoSize = true;
-            this.statMaxVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.statMaxVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(173)))), ((int)(((byte)(153)))));
             this.statMaxVal.ForeColor = System.Drawing.Color.Black;
             this.statMaxVal.Location = new System.Drawing.Point(113, 297);
             this.statMaxVal.Name = "statMaxVal";
@@ -607,7 +688,7 @@ namespace OGLAD_UI
             // statMinVal
             // 
             this.statMinVal.AutoSize = true;
-            this.statMinVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.statMinVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(173)))), ((int)(((byte)(153)))));
             this.statMinVal.ForeColor = System.Drawing.Color.Black;
             this.statMinVal.Location = new System.Drawing.Point(109, 234);
             this.statMinVal.Name = "statMinVal";
@@ -618,7 +699,7 @@ namespace OGLAD_UI
             // statSD2LowerVal
             // 
             this.statSD2LowerVal.AutoSize = true;
-            this.statSD2LowerVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.statSD2LowerVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(173)))), ((int)(((byte)(153)))));
             this.statSD2LowerVal.ForeColor = System.Drawing.Color.Black;
             this.statSD2LowerVal.Location = new System.Drawing.Point(109, 169);
             this.statSD2LowerVal.Name = "statSD2LowerVal";
@@ -629,7 +710,7 @@ namespace OGLAD_UI
             // statSD1LowerVal
             // 
             this.statSD1LowerVal.AutoSize = true;
-            this.statSD1LowerVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.statSD1LowerVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(173)))), ((int)(((byte)(153)))));
             this.statSD1LowerVal.ForeColor = System.Drawing.Color.Black;
             this.statSD1LowerVal.Location = new System.Drawing.Point(111, 104);
             this.statSD1LowerVal.Name = "statSD1LowerVal";
@@ -640,7 +721,7 @@ namespace OGLAD_UI
             // statMeanVal
             // 
             this.statMeanVal.AutoSize = true;
-            this.statMeanVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.statMeanVal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(173)))), ((int)(((byte)(153)))));
             this.statMeanVal.ForeColor = System.Drawing.Color.Black;
             this.statMeanVal.Location = new System.Drawing.Point(109, 43);
             this.statMeanVal.Name = "statMeanVal";
@@ -651,7 +732,7 @@ namespace OGLAD_UI
             // statMin
             // 
             this.statMin.AutoSize = true;
-            this.statMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.statMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(173)))), ((int)(((byte)(153)))));
             this.statMin.ForeColor = System.Drawing.Color.Black;
             this.statMin.Location = new System.Drawing.Point(23, 234);
             this.statMin.Name = "statMin";
@@ -662,7 +743,7 @@ namespace OGLAD_UI
             // statSD2
             // 
             this.statSD2.AutoSize = true;
-            this.statSD2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.statSD2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(173)))), ((int)(((byte)(153)))));
             this.statSD2.ForeColor = System.Drawing.Color.Black;
             this.statSD2.Location = new System.Drawing.Point(21, 169);
             this.statSD2.Name = "statSD2";
@@ -673,7 +754,7 @@ namespace OGLAD_UI
             // statSD1
             // 
             this.statSD1.AutoSize = true;
-            this.statSD1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.statSD1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(173)))), ((int)(((byte)(153)))));
             this.statSD1.ForeColor = System.Drawing.Color.Black;
             this.statSD1.Location = new System.Drawing.Point(21, 104);
             this.statSD1.Name = "statSD1";
@@ -684,7 +765,7 @@ namespace OGLAD_UI
             // statMean
             // 
             this.statMean.AutoSize = true;
-            this.statMean.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.statMean.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(173)))), ((int)(((byte)(153)))));
             this.statMean.ForeColor = System.Drawing.Color.Black;
             this.statMean.Location = new System.Drawing.Point(21, 43);
             this.statMean.Name = "statMean";
@@ -697,7 +778,7 @@ namespace OGLAD_UI
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(173)))), ((int)(((byte)(153)))));
             this.panel1.Controls.Add(this.statPFVal);
             this.panel1.Controls.Add(this.statPF);
             this.panel1.Controls.Add(this.statLeadLagVal);
@@ -751,7 +832,7 @@ namespace OGLAD_UI
             // statMax
             // 
             this.statMax.AutoSize = true;
-            this.statMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(96)))), ((int)(((byte)(184)))), ((int)(((byte)(166)))));
+            this.statMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(173)))), ((int)(((byte)(153)))));
             this.statMax.ForeColor = System.Drawing.Color.Black;
             this.statMax.Location = new System.Drawing.Point(18, 278);
             this.statMax.Name = "statMax";
@@ -759,65 +840,11 @@ namespace OGLAD_UI
             this.statMax.TabIndex = 5;
             this.statMax.Text = "Max:";
             // 
-            // getStartedToolStripMenuItem
-            // 
-            this.getStartedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importingAFileToolStripMenuItem,
-            this.interactingWithDataToolStripMenuItem,
-            this.fAQToolStripMenuItem,
-            this.usingHistogramControlsToolStripMenuItem,
-            this.formattingExternalDataFilesToolStripMenuItem});
-            this.getStartedToolStripMenuItem.Name = "getStartedToolStripMenuItem";
-            this.getStartedToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.getStartedToolStripMenuItem.Text = "LAGUI Guide";
-            // 
-            // importingAFileToolStripMenuItem
-            // 
-            this.importingAFileToolStripMenuItem.Name = "importingAFileToolStripMenuItem";
-            this.importingAFileToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.importingAFileToolStripMenuItem.Text = "Importing a File";
-            this.importingAFileToolStripMenuItem.Click += new System.EventHandler(this.importingAFileToolStripMenuItem_Click);
-            // 
-            // interactingWithDataToolStripMenuItem
-            // 
-            this.interactingWithDataToolStripMenuItem.Name = "interactingWithDataToolStripMenuItem";
-            this.interactingWithDataToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.interactingWithDataToolStripMenuItem.Text = "Interacting with Data";
-            this.interactingWithDataToolStripMenuItem.Click += new System.EventHandler(this.interactingWithDataToolStripMenuItem_Click);
-            // 
-            // formattingExternalDataFilesToolStripMenuItem
-            // 
-            this.formattingExternalDataFilesToolStripMenuItem.Name = "formattingExternalDataFilesToolStripMenuItem";
-            this.formattingExternalDataFilesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.formattingExternalDataFilesToolStripMenuItem.Text = "Formatting External Data Files";
-            this.formattingExternalDataFilesToolStripMenuItem.Click += new System.EventHandler(this.formattingExternalDataFilesToolStripMenuItem_Click);
-            // 
-            // usingHistogramControlsToolStripMenuItem
-            // 
-            this.usingHistogramControlsToolStripMenuItem.Name = "usingHistogramControlsToolStripMenuItem";
-            this.usingHistogramControlsToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.usingHistogramControlsToolStripMenuItem.Text = "Using Histogram Controls";
-            this.usingHistogramControlsToolStripMenuItem.Click += new System.EventHandler(this.usingHistogramControlsToolStripMenuItem_Click);
-            // 
-            // fAQToolStripMenuItem
-            // 
-            this.fAQToolStripMenuItem.Name = "fAQToolStripMenuItem";
-            this.fAQToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.fAQToolStripMenuItem.Text = "Exporting Data";
-            this.fAQToolStripMenuItem.Click += new System.EventHandler(this.fAQToolStripMenuItem_Click);
-            // 
-            // fAQToolStripMenuItem1
-            // 
-            this.fAQToolStripMenuItem1.Name = "fAQToolStripMenuItem1";
-            this.fAQToolStripMenuItem1.Size = new System.Drawing.Size(181, 22);
-            this.fAQToolStripMenuItem1.Text = "FAQ";
-            this.fAQToolStripMenuItem1.Click += new System.EventHandler(this.fAQToolStripMenuItem1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(66)))), ((int)(((byte)(124)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(88)))), ((int)(((byte)(103)))));
             this.ClientSize = new System.Drawing.Size(879, 501);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.menuStrip1);
@@ -912,6 +939,9 @@ namespace OGLAD_UI
         private System.Windows.Forms.ToolStripMenuItem usingHistogramControlsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem formattingExternalDataFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fAQToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem gridDesignToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem libraryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveDeviceAsToolStripMenuItem;
     }
 }
 
